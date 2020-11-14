@@ -1,0 +1,120 @@
+---
+title: "Team Project Multivariate Analysis"
+author: "Adrian White, Cesar Conejo, Xavier Bryant"
+date: "11/14/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#load data, functions and libraries
+load('rda/clinical_trial_complete.rda')
+source("scripts/functions/graph_functions.R")
+X <- clinical_trial_complete
+# Remove the file
+rm(clinical_trial_complete)
+
+color_1 <- "deepskyblue2"
+```
+
+### Team members
+
+* Adrian White
+* Cesar Conejo: 100443596 (Representative member)
+* Xavier Bryant: 100445659
+
+
+### Introduction data set
+
+Adrian resume about the CRASH2 trial in general:
+
+Some interesting links:
+
+* https://pubmed.ncbi.nlm.nih.gov/23477634/
+* https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(10)60835-5/fulltext
+
+
+info available in [Vanderbilt Biostatistics](http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/crash2.html)
+
+
+### Summary variables in the data set
+
+Adrian/xavier. You can send me the columns with this info. By the moment, I am using this ones:
+
+
+* entryid: Unique Numbers for Entry Forms
+
+* sex:
+
+* ageP	
+
+* injurytime: Hours Since Injury
+
+* injurytype:	
+
+* sbp: Systolic Blood Pressure
+
+* rr: Respiratory Rate
+
+* cc: Central Capillary Refille Time
+
+* hr: Heart Rate
+
+* btransf: Blood Products Transfusion
+
+* ncell: Number of Units of Red Call Products Transfused
+
+* nplasma: Number of Units of Fresh Frozen Plasma Transfused
+
+* nplatelets: Number of Units of Platelets Transfused
+
+* ncryo: Number of Units of Cryoprecipitate Transfused
+
+* bvii:	Recombinant Factor VIIa Given
+
+* boxid: Treatment Box Number
+
+* packnum: Treatment Pack Number
+
+
+### Summary and Graphical display
+
+A review of the structure of the dataset is the following:
+
+```{r echo=FALSE}
+str(X)
+```
+
+\newpage
+
+A summary of the values in the data set are:
+
+```{r echo=FALSE}
+summary(X)
+```
+
+Finally, the list of different values by column is the following:
+
+```{r echo=FALSE}
+apply(X, 2, function(x) length(unique(x)))
+```
+
+Some visualizations of the variables is:
+
+```{r echo=FALSE}
+plothist(col_name = "age", df = X, color_1)
+```
+
+```{r echo=FALSE}
+plothist(col_name = "injurytime", df = X, color_1)
+```
+
+```{r echo=FALSE}
+plothist(col_name = "sbp", df = X, color_1)
+```
+
+```{r echo=FALSE}
+plothist(col_name = "rr", df = X, color_1)
+```
+
