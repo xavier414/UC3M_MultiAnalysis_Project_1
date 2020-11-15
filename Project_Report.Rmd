@@ -98,6 +98,7 @@ summary.methods <- data.frame(variable,
 knitr::kable(summary.methods)
 ```
 
+\newpage
 
 ### Summary and Graphical display
 
@@ -107,13 +108,13 @@ A review of the structure of the dataset is the following:
 str(X)
 ```
 
-\newpage
-
 A summary of the values in the data set are:
 
 ```{r echo=FALSE}
 summary(X)
 ```
+
+\newpage
 
 Finally, the list of different values by column is the following:
 
@@ -121,7 +122,7 @@ Finally, the list of different values by column is the following:
 apply(X, 2, function(x) length(unique(x)))
 ```
 
-\newpage
+
 
 Some visualizations of the quantitative variables are:
 
