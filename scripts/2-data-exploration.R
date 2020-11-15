@@ -3,7 +3,6 @@ load('rda/clinical_trial_complete.rda')
 
 source("scripts/functions/graph_functions.R")
 
-
 X <- clinical_trial_complete
 
 # Remove the file

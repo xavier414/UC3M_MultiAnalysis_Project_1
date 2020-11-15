@@ -14,7 +14,7 @@ load('data/crash2.rda')
 
 crash2$death <- as.factor(ifelse(is.na(crash2$ddeath),0,1))
 
-clinical_trial <- crash2 %>% select(1,5,6,7,8,9,10,11,12,23,37,38,39,40,41,42,45)
+clinical_trial <- crash2 %>% select(1,5,6,7,8,9,10,11,12,23,37,38,39,40,41,42,45,35)
 
 summary(clinical_trial)
 
@@ -29,7 +29,8 @@ anyNA(clinical_trial_complete)
 
 
 clinical_trial_complete <- clinical_trial_complete %>% mutate(btransf = factor(btransf),
-                                                              bvii = factor(bvii))
+                                                              bvii = factor(bvii),
+                                                              bloading = factor(bloading))
 
 
 summary(clinical_trial_complete)
