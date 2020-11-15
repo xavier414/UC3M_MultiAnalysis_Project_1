@@ -26,7 +26,7 @@ rm(clinical_trial_complete)
 
 ### Team members
 
-* Adrian White
+* Adrian White: 1004391004
 * Cesar Conejo: 100443596 (Representative member)
 * Xavier Bryant: 100445659
 
@@ -80,16 +80,17 @@ The variables in this dataset are the following:
 
 * Death: (Boolean) Indicator if patient survived after the procedure
 
+* bloading: (Boolean)	Complete Loading Dose of Trial Drug Given
 
 A summmary of data type is the following
 
 ```{r echo=FALSE}
-variable <- c("entryid","sex","age","injurytime","injurytype","sbp","rr","cc","hr","ndaysicu","btransf","ncell","nplasma","nplatelets","ncryo","bvii","death")
+variable <- c("entryid","sex","age","injurytime","injurytype","sbp","rr","cc","hr","ndaysicu","btransf","ncell","nplasma","nplatelets","ncryo","bvii","death", "bloading")
 
-type_variable <- c("Quantitative","Qualitative","Quantitative","Quantitative","Qualitative","Quantitative","Quantitative","Quantitative","Quantitative","Quantitative","Quanlitative","Quantitative","Quantitative","Quantitative","Quantitative","Qualitative","Qualitative")
+type_variable <- c("Quantitative","Qualitative","Quantitative","Quantitative","Qualitative","Quantitative","Quantitative","Quantitative","Quantitative","Quantitative","Quanlitative","Quantitative","Quantitative","Quantitative","Quantitative","Qualitative","Qualitative","Qualitative")
 
 
-sub_type_variable <- c("Continuous","Nominal","Continuous","Continuous","Nominal","Continuous","Continuous","Continuous","Continuous","Discrete","Nominal","Discrete","Discrete","Discrete","Discrete","Nominal","Nominal")
+sub_type_variable <- c("Continuous","Nominal","Continuous","Continuous","Nominal","Continuous","Continuous","Continuous","Continuous","Discrete","Nominal","Discrete","Discrete","Discrete","Discrete","Nominal","Nominal","Nominal")
 
 summary.methods <- data.frame(variable,
                               type_variable,
