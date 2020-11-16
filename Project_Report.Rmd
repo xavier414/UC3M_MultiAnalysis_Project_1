@@ -175,7 +175,8 @@ plothist(col_name = "nplatelets", df = X, ylabtext = "All participants",  color_
 ```{r echo=FALSE}
 plothist(col_name = "ncryo", df = X, ylabtext = "All participants",  color_1)
 ```
-#### Discussion on the individual variable distributions
+
+### Discussion on the individual variable distributions
 
 * **age:** Age appears to be largely weighted to the left, with lower ages featuring more frequently than those that are greater, possibly reflecting that younger people often take more risk and work higher at-risk occupations, raising their chance of experiencing trauma involving bleeding.
 
