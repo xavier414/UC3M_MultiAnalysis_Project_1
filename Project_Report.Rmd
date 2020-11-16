@@ -178,3 +178,102 @@ plothist(col_name = "nplatelets", df = X, ylabtext = "All participants",  color_
 ```{r echo=FALSE}
 plothist(col_name = "ncryo", df = X, ylabtext = "All participants",  color_1)
 ```
+#### Discussion on the individual variable distributions
+
+age
+
+Age appears to be largely weighed to the left, with lower ages featuring more frequently than those that are greater, possibly reflecting that younger people often take more risk and work higher at risk occupations, raising their chance of experiencing trauma involving bleeding.
+
+sex
+
+Sex is heavily weighed to males, similar to age, possibly demonstrating that men take more risk and work at higher risk occupations. increasing the likelihood of experiencing trauma that would involve large amounts of bleeding.
+
+injurytime
+
+Injury time is weighted to the right, with almost all values falling below ten minutes since the injury was experienced. This is likely due to the fact that in cases of serious injury victims are brought to the hospital quite quickly.
+
+injurytype
+
+Shows that the majority of patients have a blunt trauma, at 5211, then 2937 have a penetrating injury and 1349 with both.
+
+sbp
+
+It seems that Sbp (Systolic Blood Pressure) is a fairly centrally balanced distribution around 90 mmHg. This is logical as a sample of biological charatersitics observed in a population are likely to have most people around the mean and then a reasonably tight distribution of those who differ, similar to that of other biological charatersitics like height. Futhermore, most people are fairly young in the sample and therefore would have rates that deviant less from the norm, at a healthy level.
+
+rr
+
+rr (Respiratory Rate) appears, similar to sbp, resembling a moderatly balanced distribution around 22 respirations per minutes, although is weighted more to the right.
+
+hr 
+
+hr (Heart rate) also seems fairly balanced at around 110, similar to the variables above. like rr and sbp.
+
+cc
+
+HISTOGRAM MISSING
+
+ndaysicu
+
+The distribution is heavily weighted to the left and right skewed. Most patients it seems, with injuries at high risk of bleeding, do not often need to remain in hospital for long.
+
+ncell
+
+The distribution is weighted to the left a median of 3, with many patients, only needing small number of or zero units of red cell products transfused.
+
+nplasma
+
+Similar to ncell, with, in fact, a meadian at 0, the distribution is weighed to the left and therefore many patients only need a small number of or zero units of plasma transfused. The kernal density is at zero and very tightly distributed on zero.
+
+nplatelets
+
+Even more extreme than nplasama, the kernal density distribution is centred at 0 with only a number of values above zero for nplatelets. Clearly most patients do not need platelets transfused. 
+
+ncryo
+
+A very similar kernal density distribution to nplatelets, centred around 0 with only a few patients requiring cryoprecipitate transfused.
+
+bvii
+
+The value for bvii is 9456 for 0 and 41 for 1, showing that the vast majority of patients do not receive recombinant factor VIIa.
+
+death
+
+Shows that most patients survive the trail with 7672 surviving in comparison to 1825 who did not.
+
+### Graphical visulations of quantitative variable relationships
+
+Scatterplot Matrix of quantitative variables
+
+```{r echo=FALSE}
+pairs(~age+injurytime+sbp+rr+cc+hr, data=X,
+      main="Quantitative Scatterplot Matrix Set 1", col=color_1)
+pairs(~age+ndaysicu+ncell+nplasma+nplatelets+ncryo, data=X,
+      main="Quantitative Scatterplot Matrix Set 2", col=color_1)
+```
+Scatterplot Matrix of quantitative variables by sex
+
+```{r echo=FALSE}
+colors_sex <- c(color_2,color_3)[1*(X$sex=="Male")+1]
+pairs(~age+injurytime+sbp+rr+cc+hr, data=X,
+      main="Quantitative Scatterplot Matrix Set 1 by Gender", col=colors_sex))
+pairs(~age+ndaysicu+ncell+nplasma+nplatelets+ncryo, data=X,
+      main="Quantitative Scatterplot Matrix Set 2 by Gender", col=colors_sex)
+```      
+
+We seperated our quantitative variables into two sets of scatterplot matrices as we have too many variables to do one set. It is hard to see any definite relationships between variables for any set of variables. We can see that some variables, as we discussed above, are very unbalanced and therefore the observations are concentrated in specific regions of the scatter plot like for the plots of ncryo, nplatelets and more. Other distributions, almost appear as "shotgun" distributions with no distinct grouping such as those for age in relation to sbp, rr, cc, and hr as well as for hr and other variables, for example. These relationships are sensible for more balanced distributions as they are not weighted or skewed in a certain area of the plot. We do not see any remarkable difference in terms of sex.
+
+Andrews plot
+
+```{r echo=FALSE}
+X_quan <- X[,c(3,4,6,7,8,9,10,12,13,14,15)]
+X_quan
+library("andrews")
+andrews(as.data.frame(cbind(X_quan,as.factor(X[,1]))),
+        clr=8,
+        ymax=4,
+        main="Andrews' Plot in terms of Sex")
+```
+
+The Andrew's plot agrees with our observation above. We do see a difference in the distributions of sex in the Andrews' plot, but not very substantially.
+
+
