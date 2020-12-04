@@ -215,25 +215,25 @@ plothist(col_name = "ncryo", df = X, ylabtext = "All participants",  color_1)
 1. **Scatterplot Matrix of quantitative variables**
 
 ```{r echo=FALSE}
-pairs(~age+injurytime+sbp+rr+cc+hr, data=X,
-      main="Quantitative Scatterplot Matrix Set 1", col=color_1)
-pairs(~age+ndaysicu+ncell+nplasma+nplatelets+ncryo, data=X,
-      main="Quantitative Scatterplot Matrix Set 2", col=color_1)
+#pairs(~age+injurytime+sbp+rr+cc+hr, data=X,
+#      main="Quantitative Scatterplot Matrix Set 1", col=color_1)
+#pairs(~age+ndaysicu+ncell+nplasma+nplatelets+ncryo, data=X,
+#      main="Quantitative Scatterplot Matrix Set 2", col=color_1)
 ```
 
 2. **Scatterplot Matrix of quantitative variables by sex**
 
 ```{r echo=FALSE}
-colors_sex <- c(color_3,color_2)[1*(X$sex=="Male")+1]
-pairs(~age+injurytime+sbp+rr+cc+hr, 
-      data=X, 
-      main="Quantitative Scatterplot Matrix Set 1 by Gender", 
-      col = colors_sex)
+#colors_sex <- c(color_3,color_2)[1*(X$sex=="Male")+1]
+#pairs(~age+injurytime+sbp+rr+cc+hr, 
+#      data=X, 
+#      main="Quantitative Scatterplot Matrix Set 1 by Gender", 
+#      col = colors_sex)
 
-pairs(~age+ndaysicu+ncell+nplasma+nplatelets+ncryo, 
-      data = X, 
-      main = "Quantitative Scatterplot Matrix Set 2 by Gender", 
-      col = colors_sex)
+#pairs(~age+ndaysicu+ncell+nplasma+nplatelets+ncryo, 
+#      data = X, 
+#      main = "Quantitative Scatterplot Matrix Set 2 by Gender", 
+#      col = colors_sex)
 ```   
 
 We separated our quantitative variables into two sets of scatter-plot matrices as we have too many variables to do one set. It is hard to see any definite relationships between variables for any set of variables. We can see that some variables, as we discussed above, are very unbalanced, and therefore the observations are concentrated in specific regions of the scatter-plot like for the plots of *ncryo*, *nplatelets*, and more. Other distributions, almost appear as "shotgun" distributions with no distinct grouping such as those for age in relation to *sbp*, *rr*, *cc*, and hr as well as for hr and other variables, for example. These relationships are sensible for more balanced distributions as they are not weighted or skewed in a certain area of the plot. We do not see any remarkable difference in terms of sex.
@@ -241,11 +241,11 @@ We separated our quantitative variables into two sets of scatter-plot matrices a
 3. **Andrews plot**
 
 ```{r echo=FALSE}
-X_quan <- X[,c(3,4,6,7,8,9,10,12,13,14,15)]
-andrews(as.data.frame(cbind(X_quan,as.factor(X[,1]))),
-        clr=8,
-        ymax=4,
-        main="Andrews' Plot in terms of Sex")
+#X_quan <- X[,c(3,4,6,7,8,9,10,12,13,14,15)]
+#andrews(as.data.frame(cbind(X_quan,as.factor(X[,1]))),
+#        clr=8,
+#        ymax=4,
+#        main="Andrews' Plot in terms of Sex")
 ```
 
 Andrew's plot agrees with our observation above. We do see a difference in the distributions of sex in the Andrews' plot, but not very substantially.
