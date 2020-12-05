@@ -1,9 +1,8 @@
 #Graph functions
 
-plothist <- function(col_name, df, ylabtext, color_1) {
+plothist <- function(col_name, df, ylabtext, color_1, breaks = "Sturges", density_plot = TRUE) {
   
-  #hist(X[[col_name]] ,  main = paste("Histogram of", col_name), xlab = col_name)
-  
+  if(density_plot == TRUE){
   
   density_col <- density(df[[col_name]],
                          kernel="gaussian")
@@ -23,7 +22,8 @@ plothist <- function(col_name, df, ylabtext, color_1) {
        col = color_1,
        freq = FALSE,
        xlim = c(min_x_d, max_x_d),
-       ylim = c(min_y_d, max_y_d)
+       ylim = c(min_y_d, max_y_d),
+       breaks = breaks
   )
   lines(density_col,
         ylab="Density",
@@ -36,6 +36,26 @@ plothist <- function(col_name, df, ylabtext, color_1) {
           col=color_1,
           horizontal=TRUE)
   par(mfrow=c(1,1))
+  }
+  # I donot want to plot the density plot
+  else{
+    par(mfrow=c(1,2))
+    hist(df[[col_name]],
+         main = paste("Histogram of", col_name),
+         xlab = col_name,
+         col = color_1,
+         freq = FALSE,
+         breaks = breaks
+    )
+    boxplot(df[[col_name]],
+            main= paste("Boxplot of", col_name),
+            xlab= col_name,
+            ylab=ylabtext,
+            col=color_1,
+            horizontal=TRUE)
+    par(mfrow=c(1,1))
+  }
+  
   
 }
 
