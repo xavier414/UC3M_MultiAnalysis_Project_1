@@ -13,6 +13,12 @@ Project 1 Course Multivariate Analysis
   
   2.4) 4-PCA: file with the PCA study by the three categories: Sex, Pain and death
 
-3) For checking the Rmarkdown report, check the file "Project_Report.Rmd"
+3) For checking the Rmarkdown report, 
 
+  3.1) File "Project_Report.Rmd" is the first exploration of the data set
+
+  3.2) File "Step1_Project.Rmd" is the first study of the data set:
+    a) Visual Analysis
+    b) Sample Estimators
+    c) PCA
 4) Final version of the document is "Project_Report.pdf"
