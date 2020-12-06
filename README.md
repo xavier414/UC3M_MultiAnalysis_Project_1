@@ -21,4 +21,9 @@ Project 1 Course Multivariate Analysis
     a) Visual Analysis
     b) Sample Estimators
     c) PCA
-4) Final version of the document is "Project_Report.pdf"
+    
+4) Final version of the document is:
+
+ 4.1) Project_Report.pdf
+ 4.2) Step1_Project.pdf ### IN CONSTRUCTION!
+ 
