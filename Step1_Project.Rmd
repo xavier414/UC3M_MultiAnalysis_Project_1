@@ -7,8 +7,30 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-```
+knitr::opts_chunk$set(fig.width=10, fig.height=5)
 
+# Libraries
+library(ggplot2)
+library(knitr)
+
+
+# Dataset:
+load('rda/clinical_trial_complete.rda')
+source("scripts/functions/graph_functions.R")
+
+# Deleting some categorical variables
+X <- clinical_trial_complete[,-c(1,11,13,14,15,16,18)]
+
+# Remove the file
+rm(clinical_trial_complete)
+
+# Remember: This add some log transformations:
+
+
+color_1 <- "deepskyblue2"
+color_2 <- "orange2"
+color_3 <- "seagreen2"
+```
 
 ## Introduction data set
 
@@ -24,25 +46,25 @@ We will be using variables regarding the sex, age, and injury of the patient as 
 
 The variables in this dataset are the following:
 
-1. entryid: (Numerical) Unique Numbers for Entry Forms
+1. sex: (Boolean) The sex of the patient (Male/Female)
 
-2. sex: (Boolean) The sex of the patient (Male/Female)
+2. age : (Numerical) Age of the patient(Years)
 
-3. age : (Numerical) Age of the patient(Years)
+3. injurytime: (Numerical) Hours since injury (Hours)
 
-4. injurytime: (Numerical) Hours since injury (Hours)
+4. injurytype:	(Categorical) Type of injury {Blunt, Penetrating, Blunt and Penetrating}
 
-5. injurytype:	(Categorical) Type of injury {Blunt, Penetrating, Blunt and Penetrating}
+5. sbp: (Numerical) Systolic Blood Pressure (mmHg)
 
-6. sbp: (Numerical) Systolic Blood Pressure (mmHg)
+6. rr: (Numerical) Respiratory Rate (rate per minute)
 
-7. rr: (Numerical) Respiratory Rate (rate per minute)
+7. cc: (Numerical) Central Capillary Refille Time (seconds)
 
-8. cc: (Numerical) Central Capillary Refille Time (seconds)
+8. hr: (Numerical) Heart Rate (rate per minute)
 
-9. hr: (Numerical) Heart Rate (rate per minute)
+9. ndaysicu: (Numerical) Number of days in ICU (days)
 
-10. ndaysicu: (Numerical) Number of days in ICU (days)
+10. ncell: (Numerical) Number of Units of Red Call Products Transfused.
 
 11. Death: (Boolean) Indicator if the patient survived after the procedure
 
@@ -50,12 +72,12 @@ The variables in this dataset are the following:
 A summary of the data type is the following:
 
 ```{r echo=FALSE}
-variable <- c("entryid","sex","age","injurytime","injurytype","sbp","rr","cc","hr","ndaysicu","death")
+variable <- c("sex","age","injurytime","injurytype","sbp","rr","cc","hr","ndaysicu","ncell","death")
 
-type_variable <- c("Quantitative","Qualitative","Quantitative","Quantitative","Qualitative","Quantitative","Quantitative","Quantitative","Quantitative","Quantitative","Qualitative")
+type_variable <- c("Qualitative","Quantitative","Quantitative","Qualitative","Quantitative","Quantitative","Quantitative","Quantitative","Quantitative","Quantitative","Qualitative")
 
 
-sub_type_variable <- c("Continuous","Nominal","Continuous","Continuous","Nominal","Continuous","Continuous","Continuous","Continuous","Discrete","Nominal")
+sub_type_variable <- c("Nominal","Continuous","Continuous","Nominal","Continuous","Continuous","Continuous","Continuous","Discrete","Continuous","Nominal")
 
 summary.methods <- data.frame(variable,
                               type_variable,
@@ -64,66 +86,173 @@ summary.methods <- data.frame(variable,
 knitr::kable(summary.methods)
 ```
 
+A review of the structure of the dataset is the following:
+
+```{r echo=FALSE}
+# str(X[,-c(12:16)])
+```
+
+A summary of the values in the data set are:
+
+```{r echo=FALSE}
+# summary(X[,-c(12:16)])
+```
+
+Finally, the list of different values by column is the following:
+
+```{r echo=FALSE}
+table <- apply(X[,-c(12:16)], 2, function(x) length(unique(x)))
+kable(t(table),
+      caption="Count of distinct values of each variable", 
+      align="c")
+```
+
+\newpage
 
 ## Visual Analysis
+
+First, we will review the distribution of the variables involve in the dataset
+
+In the case of age, the figure \ref{fig:age} reflects how this variable appears to be largely weighted to the left, with lower ages featuring more frequently than those that are greater, possibly reflecting that younger people often take more risk and work higher at-risk occupations, raising their chance of experiencing trauma involving bleeding.
+
+```{r age, fig.cap = "Distribution of age variable\\label{fig:age}", echo=FALSE}
+plothist(col_name = "age", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
+```
+
+The figure \ref{fig:injurytime} show the distribution of the variable Injury time. We can see how this variable is highly positive skewed with almost all values falling below ten minutes since the injury was experienced. This is likely due to the fact that in cases of serious injury victims are brought to the hospital quite quickly. Then, we apply a `log` transformation to this variables as we can see in figure \ref{fig:loginjurytime}.
+
+```{r injurytime, fig.cap = "Distribution of injurytime variable\\label{fig:injurytime}", echo=FALSE}
+plothist(col_name = "injurytime", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
+```
+
+```{r loginjurytime, fig.cap = "Distribution of the log injurytime variable\\label{fig:loginjurytime}", echo=FALSE}
+plothist(col_name = "log_injurytime", df = X,ylabtext = "All participants", color_1, breaks = 10, density_plot = FALSE)
+```
+
+For *sbp* (Systolic Blood Pressure), the distribution is a fairly centrally balanced distribution around 90 mmHg. This is logical as a sample of biological characteristics observed in a population is likely to have most people around the mean and then a reasonably tight distribution of those who differ, similar to that of other biological features like height. Furthermore, most people are fairly young in the sample and therefore would have rates that deviant less from the norm, at a healthy level. The distribution is given by figure \ref{fig:sbp}.
+
+```{r sbp, fig.cap = "Distribution of sbp (Systolic Blood Pressure)\\label{fig:sbp}", echo=FALSE}
+plothist(col_name = "sbp", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
+```
+
+In the case of *rr* (Respiratory Rate) appears, similar to sbp, resembling a moderately balanced distribution around 22 respirations per minute, although is weighted more to the right. The distribution of this variable is showed in figure \ref{fig:rr}. Taking a log transformation, we have the new distribution in figure \ref{fig:logrr}.
+
+```{r rr, fig.cap = "Distribution of rr (Respiratory Rate)\\label{fig:rr}", echo=FALSE}
+plothist(col_name = "rr", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
+```
+
+```{r logrr, fig.cap = "Distribution of log transformation of rr (Respiratory Rate)\\label{fig:logrr}", echo=FALSE}
+plothist(col_name = "log_rr", df = X,ylabtext = "All participants", color_1, breaks = 8 ,density_plot = FALSE)
+```
+
+In the case of *hr* (Heart rate), figure \ref{fig:hr} show that this distribution seems fairly balanced at around 110, similar to the variables above, like *sbp* and *rr*.
+
+```{r hr, fig.cap = "Distribution of hh (hearth Rate)\\label{fig:hr}", echo=FALSE}
+plothist(col_name = "hr", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
+```
+
+For *cc* (Central capillary) refill has 75% of the observations below of 4 as we can appreciate in figure \ref{fig:cc}. However, the distribution is right-skewed. As a result, we apply a log transformation that is given in figure \ref{fig:logcc}.
+
+```{r cc, fig.cap = "Distribution of cc (Central capillary)\\label{fig:cc}", echo=FALSE}
+plothist(col_name = "cc", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
+```
+
+```{r logcc, fig.cap = "Distribution of log transformation of cc (Central capillary)\\label{fig:logcc}", echo=FALSE}
+plothist(col_name = "log_cc", df = X,ylabtext = "All participants", color_1, breaks = 8 ,density_plot = FALSE)
+```
+
+The figure \ref{fig:ndaysicu} shows the distribution of the *ndaysicu:* variable. In this case, the distribution is heavily weighted to the left and right-skewed. Most patients it seems, with injuries at high risk of bleeding, do not often need to remain in the hospital for long. The transformed distribution is given in the figure \ref{fig:logndaysicu}.
+
+```{r ndaysicu, fig.cap = "Distribution of ndaysicu\\label{fig:ndaysicu}", echo=FALSE}
+plothist(col_name = "ndaysicu", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
+```
+
+```{r logndaysicu, fig.cap = "Distribution of log ndaysicu\\label{fig:logndaysicu}", echo=FALSE}
+plothist(col_name = "log_ndaysicu", df = X,ylabtext = "All participants", color_1, breaks = 10, density_plot = FALSE)
+```
+
+Finally, for the *ncell*distribution is weighted to the left with a median of 3 as we can appreciate in the figure \ref{fig:ncell}. The conclusion of this it that with many patients, only needing a small number of or zero units of red cell products transfused. Due to this variable is highly right skewed, we apply the log transformation of the figure \ref{fig:logncell}.
+
+```{r ncell, fig.cap = "Distribution of ncell\\label{fig:ncell}", echo=FALSE}
+plothist(col_name = "ncell", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
+```
+
+```{r logncell, fig.cap = "Distribution of log ncell\\label{fig:logncell}", echo=FALSE}
+plothist(col_name = "log_ncell", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
+```
+
+For the categorical variables, we will focus on the distributions of deaths. The figure \ref{fig:deaths}, shows that approximately for each death, 4 people survive. In the context of this problem, if we have an unbalanced proportion of people that survive can be considered as a sign that the drugs works.
+
+```{r deaths, fig.cap = "Distribution of deaths\\label{fig:deaths}", echo=FALSE}
+ggplot(X) +
+  geom_bar(aes( x = death, fill = death)) +
+  labs(title = "Distribution of death") 
+```
+
+\newpage
+
+On the other hand, we can study some relations of the quantitative variables in terms of the categorical variable death. Figure \ref{fig:agedeath}
+
+```{r agedeath, fig.cap = "Distribution of age in terms of death\\label{fig:agedeath}", echo=FALSE}
+plothist_factor("age", "death", X, "Death", color_2, color_3, density_plot = FALSE)
+```
+
+Figure \ref{fig:loginjurytimedeath}
+
+```{r loginjurytimedeath, fig.cap = "Distribution of the log injurytime in terms of death\\label{fig:loginjurytimedeath}", echo=FALSE}
+plothist_factor("log_injurytime", "death", X, "Death", color_2, color_3, density_plot = FALSE)
+```
+
+Figure \ref{fig:sbpdeath}
+
+```{r sbpdeath, fig.cap = "Distribution of sbp (Systolic Blood Pressure) in terms of death\\label{fig:sbpdeath}", echo=FALSE}
+plothist_factor("sbp", "death", X, "Death", color_2, color_3, density_plot = FALSE)
+```
+
+Figure \ref{fig:loginjurytimedeath}
+
+```{r logrrdeath, fig.cap = "Distribution of log transformation of rr (Respiratory Rate) in terms of death\\label{fig:logrrdeath}", echo=FALSE}
+plothist_factor("log_rr", "death", X, "Death", color_2, color_3, density_plot = FALSE)
+```
+
+Figure \ref{fig:hrdeath}
+
+```{r hrdeath, fig.cap = "Distribution of hh (hearth Rate) in terms of death\\label{fig:hrdeath}", echo=FALSE}
+plothist_factor("hr", "death", X, "Death", color_2, color_3, density_plot = FALSE)
+```
+
+Figure \ref{fig:logccdeath}
+
+```{r logccdeath, fig.cap = "Distribution of log transformation of cc (Central capillary) in terms of death\\label{fig:logccdeath}", echo=FALSE}
+plothist_factor("log_cc", "death", X, "Death", color_2, color_3, density_plot = FALSE)
+```
+
+Figure \ref{fig:logndaysicudeath}
+
+```{r logndaysicudeath, fig.cap = "Distribution of log ndaysicu in terms of death\\label{fig:logndaysicudeath}", echo=FALSE}
+plothist_factor("log_ndaysicu", "death", X, "Death", color_2, color_3, density_plot = FALSE)
+```
+
+Figure \ref{fig:logncelldeath}
+
+```{r logncelldeath, fig.cap = "Distribution of log ncell in terms of death\\label{fig:logncelldeath}", echo=FALSE}
+plothist_factor("log_ncell", "death", X, "Death", color_2, color_3, density_plot = FALSE)
+```
+
+Finally, the scatter plot...
+
+![Scatter plot of all quantitiative variables](figure_output/pairs_death.png)
+
+The PCP plot...
+
+![PCP plot of all quantitiative variables](figure_output/pcp_death.png)
+
+The Andrews' plot...
+
+![Andres' plot of all quantitiative variables](figure_output/andrew_death.png)
 
 ## Sample Estimators
 
 
 ## Principal Component Analysis
 
-```{r cars}
-load('rda/clinical_trial_complete.rda')
-X <- clinical_trial_complete[,-c(1,11,13,14,15,16,18)]
-X <- X[,-c(3,6,7,9,10)]
-X_quan <- X[,-c(1,3,6)]
-
-# Categorical variables
-Y <- X[,c(1,3,6)]
-X <- X_quan
-
-# Remove the file
-rm(clinical_trial_complete)
-rm(X_quan)
-
-# Define colors for plots
-
-color_1 <- "deepskyblue2"
-color_2 <- "seagreen2"
-color_3 <- "orange2"
-color_4 <- "darkorchid4"
-
-n <- nrow(X)
-p <- ncol(X)
-
-X_pcs <- prcomp(X,scale=TRUE)
-
-
-######### SEX
-colors_sex <- c(color_2,color_3)[1*(Y[,1]=="male")+1]
-plot(X_pcs$x[,1:2],pch=19,col=colors_sex, main = "First 2 PC by Sex")
-
-
-######### PAIN
-colors_pain <- c(color_2,color_3,color_4)[1 + ifelse(Y[,2]== "blunt", 1,
-                                              ifelse(Y[,2]=="penetrating",2,
-                                                     0))]
-plot(X_pcs$x[,1:2],pch=19,col=colors_pain)
-
-
-######### death 1 (death)
-
-colors_death <- c(color_2,color_3)[1*(Y[,3]==0)+1]
-plot(X_pcs$x[,1:2],pch=19,col=colors_death, main = "First 2 PC by death")
-
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
