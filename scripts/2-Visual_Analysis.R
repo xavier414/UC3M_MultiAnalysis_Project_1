@@ -12,28 +12,36 @@ colnames(clinical_trial_complete)
 # Deleting some categorical variables
 X <- clinical_trial_complete[,-c(1,11,13,14,15,16,18)]
 
+#colors
+color_1 <- "deepskyblue2"
+color_2 <- "orange2"
+color_3 <- "seagreen2"
+
+
 # Remove the file
 rm(clinical_trial_complete)
 
-str(X)
+str(X[,-c(12:16)])
 
 summary(X)
+
+colnames(X)
 
 
 # 2.1 List of distinct values by column
 apply(X, 2, function(x) length(unique(x)))
 
-color_1 <- "deepskyblue2"
+
 
 # 1. age
-plothist(col_name = "age", df = X, ylabtext = "All participants",  color_1)
+plothist(col_name = "age", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
 
 # 2. injurytime
 
 ## High right skewed. Taking log
 plothist(col_name = "injurytime", df = X,ylabtext = "All participants", color_1)
 
-plothist(col_name = "loginjurytime", df = X,ylabtext = "All participants", color_1, breaks = 10, density_plot = FALSE)
+plothist(col_name = "log_injurytime", df = X,ylabtext = "All participants", color_1, breaks = 10, density_plot = FALSE)
 
 # 3. sbp
 plothist(col_name = "sbp", df = X,ylabtext = "All participants", color_1)
@@ -43,14 +51,14 @@ plothist(col_name = "sbp", df = X,ylabtext = "All participants", color_1)
 ## Skewed
 plothist(col_name = "rr", df = X,ylabtext = "All participants", color_1)
 
-plothist(col_name = "logrr", df = X,ylabtext = "All participants", color_1, breaks = 8 ,density_plot = FALSE)
+plothist(col_name = "log_rr", df = X,ylabtext = "All participants", color_1, breaks = 8 ,density_plot = FALSE)
 
 # 5. cc
 
 ## skewed
 plothist(col_name = "cc", df = X,ylabtext = "All participants", color_1)
 
-plothist(col_name = "logcc", df = X,ylabtext = "All participants", color_1, breaks = 8, density_plot = FALSE)
+plothist(col_name = "log_cc", df = X,ylabtext = "All participants", color_1, breaks = 8, density_plot = FALSE)
 
 
 
@@ -65,14 +73,14 @@ plothist(col_name = "hr", df = X,ylabtext = "All participants", color_1)
 plothist(col_name = "ndaysicu", df = X,ylabtext = "All participants", color_1)
 
 
-plothist(col_name = "logndaysicu", df = X,ylabtext = "All participants", color_1, breaks = 10, density_plot = FALSE)
+plothist(col_name = "log_ndaysicu", df = X,ylabtext = "All participants", color_1, breaks = 10, density_plot = FALSE)
 
 # 8. ncell
 
 ## Skewed
 plothist(col_name = "ncell", df = X,ylabtext = "All participants", color_1)
 
-plothist(col_name = "logncell", df = X,ylabtext = "All participants", color_1, breaks = 8 ,density_plot = FALSE)
+plothist(col_name = "log_ncell", df = X,ylabtext = "All participants", color_1, breaks = 8 ,density_plot = FALSE)
 
 
 # Categorical variables
@@ -100,8 +108,27 @@ ggplot(X) +
 colnames(X)
 
 X <- X[,-c(3,6,7,9,10)]
-
 X_quan <- X[,-c(1,3,6)]
+X_quan <- X_quan[,c(1,4,2,5,6,3,7,8)] 
+
+
+plothist_factor("age", "death", X, "Death", color_2, color_3, density_plot = FALSE)
+
+plothist_factor("log_injurytime", "death", X, "Death", color_2, color_3, density_plot = FALSE)
+
+plothist_factor("sbp", "death", X, "Death", color_2, color_3, density_plot = FALSE)
+
+plothist_factor("log_rr", "death", X, "Death", color_2, color_3, density_plot = FALSE)
+
+plothist_factor("log_cc", "death", X, "Death", color_2, color_3, density_plot = FALSE)
+
+plothist_factor("hr", "death", X, "Death", color_2, color_3, density_plot = FALSE)
+
+plothist_factor("log_ndaysicu", "death", X, "Death", color_2, color_3, density_plot = FALSE)
+
+plothist_factor("log_ncell", "death", X, "Death", color_2, color_3, density_plot = FALSE)
+
+
 
 ####### Complete observations
 # Step 1: Call the pdf command to start the plot
@@ -119,10 +146,10 @@ dev.off()
 ####### 
 # death
 
+colnames(X_quan)
 color_2 <- "seagreen2"
 color_3 <- "orange2"
 colors_death <- c(color_2,color_3)[1*(X$death==1)+1]
-
 
 # Step 1: Call the pdf command to start the plot
 pdf(file = "figure_output/pairs_death.pdf",   # The directory you want to save the file in
@@ -130,7 +157,7 @@ pdf(file = "figure_output/pairs_death.pdf",   # The directory you want to save t
     height = 10) # The height of the plot in inches
 
 # Step 2: Create the plot with R code
-pairs(X_quan, pch=19, col=colors_death)
+pairs(X_quan, pch=19, col=colors_death,lower.panel=NULL)
 
 # Step 3: Run dev.off() to create the file!
 dev.off()

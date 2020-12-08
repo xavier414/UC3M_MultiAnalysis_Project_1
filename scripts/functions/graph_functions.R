@@ -61,8 +61,9 @@ plothist <- function(col_name, df, ylabtext, color_1, breaks = "Sturges", densit
 
 
 
-plothist_factor <- function(col_name, col_factor, df, ylabtext, color_2, color_3) {
+plothist_factor <- function(col_name, col_factor, df, ylabtext, color_2, color_3, density_plot = TRUE) {
   
+  if(density_plot == TRUE){
   
   d_Yes <- density(df[[col_name]][df[[col_factor]]=="Yes"],
                    kernel="gaussian")
@@ -103,5 +104,47 @@ plothist_factor <- function(col_name, col_factor, df, ylabtext, color_2, color_3
   legend("topright", inset=.05, title="Private College",
          c("Yes","No"), fill = c("seagreen2","orange2"), horiz=TRUE)
   par(mfrow=c(1,1))
+  }else{
+    
+    d_Yes <- hist(df[[col_name]][df[[col_factor]]==1],
+                    plot = FALSE)
+    
+    min_x_d_Yes <- min(d_Yes$breaks)
+    max_x_d_Yes <- max(d_Yes$breaks)
+    
+    
+    d_No <- hist(df[[col_name]][df[[col_factor]]==0],
+                    plot=FALSE)
+    
+    min_x_d_No <- min(d_No$breaks)
+    max_x_d_No <- max(d_No$breaks)
+    
+    min_x <- min(c(min_x_d_Yes,min_x_d_No))
+    max_x <- max(c(max_x_d_Yes,max_x_d_No))
+    
+    layout(matrix(c(1,1,2,3), 2, 2, byrow = TRUE))
+    boxplot(df[[col_name]]~df[[col_factor]],
+            main= paste("Boxplot of ", col_name ,"in terms of ", ylabtext),
+            ylab= ylabtext,
+            xlab=col_name,
+            col=c(color_3,color_2),
+            horizontal=TRUE)
+    plot(d_Yes,
+         col=color_2,
+         xlim=c(min_x,max_x),
+         freq=FALSE,
+         xlab=col_name,
+         main= paste("Histogram of ", col_name ,"in terms of ", ylabtext, "= 1")
+    )
+    plot(d_No,
+         col=color_3,
+         xlim=c(min_x,max_x),
+         freq=FALSE,
+         xlab=col_name,
+         main=paste("Histogram of ", col_name ,"in terms of ", ylabtext, "= 0")
+    )
+    par(mfrow=c(1,1))
+  }
+  
   
 }

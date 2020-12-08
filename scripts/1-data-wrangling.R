@@ -27,11 +27,11 @@ clinical_trial_complete <- clinical_trial_complete %>% mutate(btransf = factor(b
                                                               ncryo = factor(ifelse(ncryo > 0,1,0))
 )
 
-clinical_trial_complete$loginjurytime <- log(clinical_trial_complete$injurytime + 1)
-clinical_trial_complete$logrr         <- log(clinical_trial_complete$rr)
-clinical_trial_complete$logcc         <- log(clinical_trial_complete$cc) 
-clinical_trial_complete$logndaysicu   <- log(clinical_trial_complete$ndaysicu + 1)
-clinical_trial_complete$logncell      <- log(clinical_trial_complete$ncell + 1)
+clinical_trial_complete$log_injurytime <- log(clinical_trial_complete$injurytime + 1)
+clinical_trial_complete$log_rr         <- log(clinical_trial_complete$rr)
+clinical_trial_complete$log_cc         <- log(clinical_trial_complete$cc) 
+clinical_trial_complete$log_ndaysicu   <- log(clinical_trial_complete$ndaysicu + 1)
+clinical_trial_complete$log_ncell      <- log(clinical_trial_complete$ncell + 1)
 
 
 summary(clinical_trial_complete)
