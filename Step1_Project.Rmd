@@ -12,6 +12,8 @@ knitr::opts_chunk$set(fig.width=10, fig.height=5)
 # Libraries
 library(ggplot2)
 library(knitr)
+library(corrplot)
+library(rrcov)
 
 
 # Dataset:
@@ -20,6 +22,8 @@ source("scripts/functions/graph_functions.R")
 
 # Deleting some categorical variables
 X <- clinical_trial_complete[,-c(1,11,13,14,15,16,18)]
+
+#X <- X[1:100,]
 
 # Remove the file
 rm(clinical_trial_complete)
@@ -89,13 +93,13 @@ knitr::kable(summary.methods)
 A review of the structure of the dataset is the following:
 
 ```{r echo=FALSE}
-# str(X[,-c(12:16)])
+str(X[,-c(12:16)])
 ```
 
 A summary of the values in the data set are:
 
 ```{r echo=FALSE}
-# summary(X[,-c(12:16)])
+summary(X[,-c(12:16)])
 ```
 
 Finally, the list of different values by column is the following:
@@ -191,37 +195,49 @@ ggplot(X) +
 
 \newpage
 
-On the other hand, we can study some relations of the quantitative variables in terms of the categorical variable death. Figure \ref{fig:agedeath}
+On the other hand, we can study some relations of the quantitative variables in terms of the categorical variable death. Figure \ref{fig:agedeath} ...
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 ```{r agedeath, fig.cap = "Distribution of age in terms of death\\label{fig:agedeath}", echo=FALSE}
 plothist_factor("age", "death", X, "Death", color_2, color_3, density_plot = FALSE)
 ```
 
-Figure \ref{fig:loginjurytimedeath}
+Figure \ref{fig:loginjurytimedeath} ....
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 ```{r loginjurytimedeath, fig.cap = "Distribution of the log injurytime in terms of death\\label{fig:loginjurytimedeath}", echo=FALSE}
 plothist_factor("log_injurytime", "death", X, "Death", color_2, color_3, density_plot = FALSE)
 ```
 
-Figure \ref{fig:sbpdeath}
+Figure \ref{fig:sbpdeath} ....
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 ```{r sbpdeath, fig.cap = "Distribution of sbp (Systolic Blood Pressure) in terms of death\\label{fig:sbpdeath}", echo=FALSE}
 plothist_factor("sbp", "death", X, "Death", color_2, color_3, density_plot = FALSE)
 ```
 
-Figure \ref{fig:loginjurytimedeath}
+Figure \ref{fig:loginjurytimedeath} ...
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 ```{r logrrdeath, fig.cap = "Distribution of log transformation of rr (Respiratory Rate) in terms of death\\label{fig:logrrdeath}", echo=FALSE}
 plothist_factor("log_rr", "death", X, "Death", color_2, color_3, density_plot = FALSE)
 ```
 
-Figure \ref{fig:hrdeath}
+Figure \ref{fig:hrdeath} ...
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 ```{r hrdeath, fig.cap = "Distribution of hh (hearth Rate) in terms of death\\label{fig:hrdeath}", echo=FALSE}
 plothist_factor("hr", "death", X, "Death", color_2, color_3, density_plot = FALSE)
 ```
 
-Figure \ref{fig:logccdeath}
+Figure \ref{fig:logccdeath} ...
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 ```{r logccdeath, fig.cap = "Distribution of log transformation of cc (Central capillary) in terms of death\\label{fig:logccdeath}", echo=FALSE}
 plothist_factor("log_cc", "death", X, "Death", color_2, color_3, density_plot = FALSE)
@@ -229,30 +245,255 @@ plothist_factor("log_cc", "death", X, "Death", color_2, color_3, density_plot = 
 
 Figure \ref{fig:logndaysicudeath}
 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
 ```{r logndaysicudeath, fig.cap = "Distribution of log ndaysicu in terms of death\\label{fig:logndaysicudeath}", echo=FALSE}
 plothist_factor("log_ndaysicu", "death", X, "Death", color_2, color_3, density_plot = FALSE)
 ```
 
-Figure \ref{fig:logncelldeath}
+Figure \ref{fig:logncelldeath} ...
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 ```{r logncelldeath, fig.cap = "Distribution of log ncell in terms of death\\label{fig:logncelldeath}", echo=FALSE}
 plothist_factor("log_ncell", "death", X, "Death", color_2, color_3, density_plot = FALSE)
 ```
 
-Finally, the scatter plot...
+Finally, the scatter plot in figure 23 ...
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 ![Scatter plot of all quantitiative variables](figure_output/pairs_death.png)
 
-The PCP plot...
+The PCP plot in figure 24...
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 ![PCP plot of all quantitiative variables](figure_output/pcp_death.png)
 
-The Andrews' plot...
+The Andrews' plot in figure 25...
 
-![Andres' plot of all quantitiative variables](figure_output/andrew_death.png)
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+![Andrews' plot of all quantitiative variables](figure_output/andrew_death.png)
+
+In conclusion ....
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+In the next section we will make some inference using sample estimators of mean, covariance, correlation
+
+\newpage
 
 ## Sample Estimators
+
+### Sample mean
+
+All population...
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r, echo=FALSE}
+X <- X[,-c(3,6,7,9,10)]
+X_quan <- X[,-c(1,3,6)]
+
+m <- colMeans(X_quan)
+
+knitr::kable(t(m),
+      row.names = FALSE,
+      caption = "Sample mean",
+      align="c")
+```
+
+Population with death = 1 ...
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r, echo=FALSE}
+X_death <- X_quan[X$death==1,]
+m_death <- colMeans(X_death)
+
+knitr::kable(t(m_death),
+      row.names = FALSE,
+      caption = "Sample mean death",
+      align="c")
+```
+
+Survival population
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r, echo=FALSE}
+X_life <- X_quan[X$death==0,]
+m_life <- colMeans(X_life)
+
+knitr::kable(t(m_life),
+      row.names = FALSE,
+      caption = "Sample mean survive",
+      align="c")
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+\newpage
+
+### Sample covariance
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r, echo=FALSE}
+S <- cov(X_quan)
+
+knitr::kable(S,
+      row.names = FALSE,
+      caption = "Sample covariance matrix",
+      align="c")
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r, echo=FALSE}
+S_death <- cov(X_death)
+
+knitr::kable(S_death,
+      row.names = FALSE,
+      caption = "Sample covariance matrix death patients",
+      align="c")
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r, echo=FALSE}
+S_life <- cov(X_life)
+
+knitr::kable(S_life,
+      row.names = FALSE,
+      caption = "Sample covariance matrix survival patients",
+      align="c")
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+\newpage
+
+### Sample correlation
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r, echo=FALSE}
+R <- cor(X_quan)
+
+knitr::kable(R,
+      row.names = FALSE,
+      caption = "Sample covariance matrix",
+      align="c")
+```
+
+Figure \ref{fig:corr} ...
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r corr, fig.cap = "Sample Correlation Crash2 Dataset\\label{fig:corr}", echo=FALSE}
+corrplot(R)
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r, echo=FALSE}
+R_death <- cor(X_death)
+
+knitr::kable(R_death,
+      row.names = FALSE,
+      caption = "Sample covariance matrix death patients",
+      align="c")
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r, echo=FALSE}
+R_life <- cor(X_life)
+
+knitr::kable(R_life,
+      row.names = FALSE,
+      caption = "Sample covariance matrix survival patients",
+      align="c")
+```
+
+Figure \ref{fig:corrgroup}...
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r corrgroup, fig.cap = "Sample Correlation for death and survival patients from Crash2 Dataset\\label{fig:corrgroup}", echo=FALSE}
+par(mfrow=c(1,2))
+corrplot(R_death)
+corrplot(R_life)
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+### Outliers
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r, echo=FALSE}
+MCD_est <- CovMcd(X_quan, alpha=0.75, nsamp="deterministic")
+m_MCD <- MCD_est$center
+
+knitr::kable(t(m_MCD),
+      row.names = FALSE,
+      caption = "Sample robust media all population",
+      align="c")
+```
+
+Comparison of the eigenvalues of the covariance matrix for sample and robust is given by figure \ref{fig:robust} ...
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r robust, fig.cap = "Comparison eigenvalues sample and robust covariance\\label{fig:robust}", echo=FALSE}
+S_MCD <- MCD_est$cov
+R_MCD <- cov2cor(S_MCD)
+eval_S <- eigen(S)$values
+eval_S_MCD <- eigen(S_MCD)$values
+
+min_y <- min(cbind(eval_S,eval_S_MCD)) - 1
+max_y <- max(cbind(eval_S,eval_S_MCD)) + 1
+
+plot(1:8,
+     eval_S,
+     col=color_1,
+     type="b",
+     xlab="Number",
+     ylab="Eigenvalues",
+     pch=19,
+     ylim=c(min_y,max_y),
+     main="Comparison of eigenvalues")
+points(1:8,
+       eval_S_MCD,
+       col=color_2,
+       type="b",
+       pch=19)
+legend(5,600,
+       legend=c("Eigenvalues of S","Eigenvalues of S MCD"),
+       col=c(color_1,color_2),
+       lty=1,
+       cex=1.2)
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r corrout, fig.cap = "Correlation all population and MCD correlation\\label{fig:corrout}", echo=FALSE}
+par(mfrow=c(1,2))
+corrplot(R)
+corrplot(R_MCD)
+```
+
+
+figure \ref{fig:corrout} Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+\newpage
 
 
 ## Principal Component Analysis
 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
