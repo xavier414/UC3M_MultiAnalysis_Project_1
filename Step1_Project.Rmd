@@ -14,6 +14,7 @@ library(ggplot2)
 library(knitr)
 library(corrplot)
 library(rrcov)
+library(factoextra)
 
 
 # Dataset:
@@ -30,10 +31,10 @@ rm(clinical_trial_complete)
 
 # Remember: This add some log transformations:
 
-
 color_1 <- "deepskyblue2"
 color_2 <- "orange2"
 color_3 <- "seagreen2"
+color_4 <- "darkorchid4"
 ```
 
 ## Introduction data set
@@ -123,7 +124,7 @@ In the case of age, the figure \ref{fig:age} reflects how this variable appears 
 plothist(col_name = "age", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
 ```
 
-The figure \ref{fig:injurytime} show the distribution of the variable Injury time. We can see how this variable is highly positive skewed with almost all values falling below ten minutes since the injury was experienced. This is likely due to the fact that in cases of serious injury victims are brought to the hospital quite quickly. Then, we apply a `log` transformation to this variables as we can see in figure \ref{fig:loginjurytime}.
+The figure \ref{fig:injurytime} show the distribution of the variable Injury time. We can see how this variable is highly positive skewed with almost all values falling below ten minutes since the injury was experienced. This is likely due to the fact that in cases of serious injury victims are brought to the hospital quite quickly. Then, we apply a *log* transformation `log_injurytime = log(injurytime + 1)` to this variables as we can see in figure \ref{fig:loginjurytime}.
 
 ```{r injurytime, fig.cap = "Distribution of injurytime variable\\label{fig:injurytime}", echo=FALSE}
 plothist(col_name = "injurytime", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
@@ -139,7 +140,7 @@ For *sbp* (Systolic Blood Pressure), the distribution is a fairly centrally bala
 plothist(col_name = "sbp", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
 ```
 
-In the case of *rr* (Respiratory Rate) appears, similar to sbp, resembling a moderately balanced distribution around 22 respirations per minute, although is weighted more to the right. The distribution of this variable is showed in figure \ref{fig:rr}. Taking a log transformation, we have the new distribution in figure \ref{fig:logrr}.
+In the case of *rr* (Respiratory Rate) appears, similar to sbp, resembling a moderately balanced distribution around 22 respirations per minute, although is weighted more to the right. The distribution of this variable is showed in figure \ref{fig:rr}. Taking a *log* transformation `log_rr = log(rr)`, we have the new distribution in figure \ref{fig:logrr}.
 
 ```{r rr, fig.cap = "Distribution of rr (Respiratory Rate)\\label{fig:rr}", echo=FALSE}
 plothist(col_name = "rr", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
@@ -155,7 +156,7 @@ In the case of *hr* (Heart rate), figure \ref{fig:hr} show that this distributio
 plothist(col_name = "hr", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
 ```
 
-For *cc* (Central capillary) refill has 75% of the observations below of 4 as we can appreciate in figure \ref{fig:cc}. However, the distribution is right-skewed. As a result, we apply a log transformation that is given in figure \ref{fig:logcc}.
+For *cc* (Central capillary) refill has 75% of the observations below of 4 as we can appreciate in figure \ref{fig:cc}. However, the distribution is right-skewed. As a result, we apply a *log* transformation `log_cc = log(cc)` that is given in figure \ref{fig:logcc}.
 
 ```{r cc, fig.cap = "Distribution of cc (Central capillary)\\label{fig:cc}", echo=FALSE}
 plothist(col_name = "cc", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
@@ -165,7 +166,7 @@ plothist(col_name = "cc", df = X, ylabtext = "All participants",  color_1, densi
 plothist(col_name = "log_cc", df = X,ylabtext = "All participants", color_1, breaks = 8 ,density_plot = FALSE)
 ```
 
-The figure \ref{fig:ndaysicu} shows the distribution of the *ndaysicu:* variable. In this case, the distribution is heavily weighted to the left and right-skewed. Most patients it seems, with injuries at high risk of bleeding, do not often need to remain in the hospital for long. The transformed distribution is given in the figure \ref{fig:logndaysicu}.
+The figure \ref{fig:ndaysicu} shows the distribution of the *ndaysicu:* variable. In this case, the distribution is heavily weighted to the left and right-skewed. Most patients it seems, with injuries at high risk of bleeding, do not often need to remain in the hospital for long. The transformed distribution `log_ndaysicu = log(ndaysicu + 1)` is given in the figure \ref{fig:logndaysicu}.
 
 ```{r ndaysicu, fig.cap = "Distribution of ndaysicu\\label{fig:ndaysicu}", echo=FALSE}
 plothist(col_name = "ndaysicu", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
@@ -175,7 +176,7 @@ plothist(col_name = "ndaysicu", df = X, ylabtext = "All participants",  color_1,
 plothist(col_name = "log_ndaysicu", df = X,ylabtext = "All participants", color_1, breaks = 10, density_plot = FALSE)
 ```
 
-Finally, for the *ncell*distribution is weighted to the left with a median of 3 as we can appreciate in the figure \ref{fig:ncell}. The conclusion of this it that with many patients, only needing a small number of or zero units of red cell products transfused. Due to this variable is highly right skewed, we apply the log transformation of the figure \ref{fig:logncell}.
+Finally, for the *ncell*distribution is weighted to the left with a median of 3 as we can appreciate in the figure \ref{fig:ncell}. The conclusion of this it that with many patients, only needing a small number of or zero units of red cell products transfused. Due to this variable is highly right skewed, we apply the *log* transformation  `log_ncell = log(ncell + 1)` of the figure \ref{fig:logncell}.
 
 ```{r ncell, fig.cap = "Distribution of ncell\\label{fig:ncell}", echo=FALSE}
 plothist(col_name = "ncell", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
@@ -495,5 +496,196 @@ figure \ref{fig:corrout} Lorem ipsum dolor sit amet, consectetur adipiscing elit
 
 
 ## Principal Component Analysis
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+## PCA Complete dataset
+
+![First two PCs based on the sample covariance all population](figure_output/pca_death.png)
+
+
+figure \ref{fig:l1pc}...
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r l1pc, fig.cap = "Loadings for the first PC\\label{fig:l1pc}", echo=FALSE}
+# Categorical variables
+Y <- X[,c(1,3,6)]
+X <- X_quan
+n <- nrow(X)
+p <- ncol(X)
+X_pcs <- prcomp(X,scale=TRUE)
+
+
+plot(1:p,X_pcs$rotation[,1],pch=19,col=color_1,main="Weights for the first PC",
+     xlab="Variables",ylab="Score")
+abline(h=0)
+text(1:p,X_pcs$rotation[,1],labels=colnames(X),pos=1,col=color_4,cex=0.75)
+```
+
+
+figure \ref{fig:l1pc}...
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r l2pc, fig.cap = "Loadings for the second PC\\label{fig:l2pc}", echo=FALSE}
+plot(1:p,X_pcs$rotation[,2],pch=19,col=color_1,main="Weights for the second PC",
+     xlab="Variables",ylab="Score")
+abline(h=0)
+text(1:p,X_pcs$rotation[,2],labels=colnames(X),pos=1,col=color_4,cex=0.75)
+```
+
+
+figure \ref{fig:l3pc}...
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r l3pc, fig.cap = "Loadings for the first two PC\\label{fig:l3pc}", echo=FALSE}
+plot(1:p,X_pcs$rotation[,2],pch=19,col=color_1,main="Weights for the second PC",
+     xlab="Variables",ylab="Score")
+abline(h=0)
+text(1:p,X_pcs$rotation[,2],labels=colnames(X),pos=1,col=color_4,cex=0.75)
+```
+
+
+![PC Scores and PC loading all population](figure_output/pca_biplot.png)
+
+figure \ref{fig:pcaeigv}...
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r pcaeigv, fig.cap = "Eigenvalues of the sample correlation matrix\\label{fig:pcaeigv}", echo=FALSE}
+fviz_eig(X_pcs,ncp=17,addlabels=T,barfill=color_1,barcolor=`color_4`)
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+![PC Scores and PC loading all population](figure_output/pca_4pc2.png)
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+figure \ref{fig:corrpc}...
+
+```{r corrpc, fig.cap = "Correlation between dataset and all PC and the first 4 PCs\\label{fig:corrpc}", echo=FALSE}
+par(mfrow=c(1,2))
+corrplot(cor(X,X_pcs$x),is.corr=T)
+corrplot(cor(X,X_pcs$x[,1:4]),is.corr=T)
+```
+
+**IS NECESSARY TO DO THE SAME BY CLASS?**
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+\newpage
+
+## PCA by Category
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+Important. For these plot the groups are now female (blue) and male (gray)
+
+![PC Scores and PC loading all population](figure_output/pca_groups.png)
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+figure \ref{fig:l1pcgrp}...
+
+```{r l1pcgrp, fig.cap = "Loadings for the first PC by death and survival patients\\label{fig:l1pcgrp}", echo=FALSE}
+load('rda/clinical_trial_complete.rda')
+X <- clinical_trial_complete[,-c(1,11,13,14,15,16,18)]
+
+## Population: Death
+X_death <- X[X$death == 1,]
+X_death <- X_death[,-c(3,6,7,9,10)]
+
+Y_death <- X_death[,c(1,3,6)]
+X_death <- X_death[,-c(1,3,6)]
+
+n_death <- nrow(X_death)
+p_death <- ncol(X_death)
+
+X_pcs_death <- prcomp(X_death,scale=TRUE)
+
+
+## Survival
+
+X_surv <- X[X$death == 0,]
+X_surv <- X_surv[,-c(3,6,7,9,10)]
+
+Y_surv <- X_surv[,c(1,3,6)]
+X_surv <- X_surv[,-c(1,3,6)]
+
+n_surv <- nrow(X_surv)
+p_surv <- ncol(X_surv)
+
+
+X_pcs_surv <- prcomp(X_surv,scale=TRUE)
+
+
+par(mfrow=c(1,2))
+plot(1:p_death,X_pcs_death$rotation[,1],pch=19,col=color_1,main="Weights for the first PC death patients",
+     xlab="Variables",ylab="Score")
+abline(h=0)
+text(1:p_death,X_pcs_death$rotation[,1],labels=colnames(X_death),pos=1,col=color_4,cex=0.75)
+
+plot(1:p_surv,X_pcs_surv$rotation[,1],pch=19,col=color_1,main="Weights for the first PC survival patients",
+     xlab="Variables",ylab="Score")
+abline(h=0)
+text(1:p_surv,X_pcs_surv$rotation[,1],labels=colnames(X_surv),pos=1,col=color_4,cex=0.75)
+```
+
+
+figure \ref{fig:l2pcgr}...
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r l2pcgr, fig.cap = "Loadings for the second PC by death and survival patients\\label{fig:l2pcgr}", echo=FALSE}
+par(mfrow=c(1,2))
+plot(1:p_death,X_pcs_death$rotation[,2],pch=19,col=color_1,main="Weights for the second PC death patients",
+     xlab="Variables",ylab="Score")
+abline(h=0)
+text(1:p_death,X_pcs_death$rotation[,2],labels=colnames(X_death),pos=1,col=color_4,cex=0.75)
+
+plot(1:p_surv,X_pcs_surv$rotation[,2],pch=19,col=color_1,main="Weights for the second PC survival patients",
+     xlab="Variables",ylab="Score")
+abline(h=0)
+text(1:p_surv,X_pcs_surv$rotation[,2],labels=colnames(X_surv),pos=1,col=color_4,cex=0.75)
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+![PC Scores and PC loading all population for death and survival patiens](figure_output/pca_group_biplot)
+
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+Figures \ref{fig:pcaeigvgr1} and  \ref{fig:pcaeigvgr2} ... 
+
+```{r pcaeigvgr1, fig.cap = "Eigenvalues of the sample correlation matrix for death patients\\label{fig:pcaeigvgr1}", echo=FALSE}
+fviz_eig(X_pcs_death,ncp=8,addlabels=T,barfill=color_1,barcolor=`color_4`)
+```
+
+
+```{r pcaeigvgr2, fig.cap = "Eigenvalues of the sample correlation matrix for survival patients\\label{fig:pcaeigvgr2}", echo=FALSE}
+fviz_eig(X_pcs_surv,ncp=8,addlabels=T,barfill=color_1,barcolor=`color_4`)
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+\newpage
+
+# Conclusions
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
