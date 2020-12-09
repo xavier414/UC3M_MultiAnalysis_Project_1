@@ -9,8 +9,13 @@ color_3 <- "orange2"
 
 load('rda/clinical_trial_complete.rda')
 X <- clinical_trial_complete[,-c(1,11,13,14,15,16,18)]
+
+colnames(X)
+
 X <- X[,-c(3,6,7,9,10)]
 X_quan <- X[,-c(1,3,6)]
+
+
 
 # Remove the file
 rm(clinical_trial_complete)
@@ -26,9 +31,11 @@ R <- cor(X_quan)
 R
 
 library("corrplot")
-corrplot(R_quan)
+corrplot(R)
 
-
+par(mfrow=c(2,2))
+corrplot(R)
+corrplot(R)
 
 ##################################################################################################################
 # Data matrices with quantitative variables with students and non-students
