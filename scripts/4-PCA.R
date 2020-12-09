@@ -297,7 +297,11 @@ dev.off()
 
 
 ## EIGENVALUES
-par(mfrow=c(1,2))
-fviz_eig(X_pcs_death,ncp=8,addlabels=T,barfill=color_1,barcolor=`color_4`)
+wpc_death <-  fviz_eig(X_pcs_death,ncp=8,addlabels=T,barfill=color_1,barcolor=`color_4`)
 fviz_eig(X_pcs_surv,ncp=8,addlabels=T,barfill=color_1,barcolor=`color_4`)
+
+
+par(mfrow=c(1,2))
+wpc_death
+wpc_death
 par(mfrow=c(1,1))
