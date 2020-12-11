@@ -65,9 +65,15 @@ plot(X_pcs$x[,1:2],pch=19,col=colors_pain)
 
 ######### death 1 (death)
 
-colors_death <- c(color_2,color_3)[1*(Y[,3]==0)+1]
-plot(X_pcs$x[,1:2],pch=19,col=colors_death, main = "First 2 PC by death")
-
+colors_death <- c(color_3,color_2)[1*(Y[,3]==0)+1]
+plot(X_pcs$x[1:100,1:2],
+     pch=19,
+     col=colors_death, 
+     main = "PCA graph of individuals \n First 2 PC by death",
+     xlab = "PC1 (19.46%)",
+     ylab = "PC2 (17.22%)")
+abline(v=0, lty = 2)
+abline(h=0, lty = 2)
 
 
 # Step 1: Call the pdf command to start the plot
@@ -76,7 +82,14 @@ pdf(file = "figure_output/pca_death.pdf",   # The directory you want to save the
     height = 10) # The height of the plot in inches
 
 # Step 2: Create the plot with R code
-plot(X_pcs$x[,1:2],pch=19,col=colors_death, main = "First 2 PC by death")
+plot(X_pcs$x[,1:2],     pch=19,
+     col=colors_death, 
+     main = "PCA graph of individuals \n First 2 PC by death",
+     xlab = "PC1 (19.46%)",
+     ylab = "PC2 (17.22%)")
+abline(v=0, lty = 2)
+abline(h=0, lty = 2)
+
 
 # Step 3: Run dev.off() to create the file!
 dev.off()
@@ -90,7 +103,7 @@ dev.off()
 # Interpretation of the first PC: Weights for the first PC
 
 plot(1:p,X_pcs$rotation[,1],pch=19,col=color_1,main="Weights for the first PC",
-     xlab="Variables",ylab="Score")
+     xlab="Variables",ylab="Score", xlim = c(1, 9), ylim = c(-1, 1))
 abline(h=0)
 text(1:p,X_pcs$rotation[,1],labels=colnames(X),pos=1,col=color_4,cex=0.75)
 
@@ -98,7 +111,7 @@ text(1:p,X_pcs$rotation[,1],labels=colnames(X),pos=1,col=color_4,cex=0.75)
 # Interpretation of the second PC: Weights for the second PC
 
 plot(1:p,X_pcs$rotation[,2],pch=19,col=color_1,main="Weights for the second PC",
-     xlab="Variables",ylab="Score")
+     xlab="Variables",ylab="Score",xlim = c(1, 9), ylim = c(-1, 1))
 abline(h=0)
 text(1:p,X_pcs$rotation[,2],labels=colnames(X),pos=1,col=color_4,cex=0.75)
 
@@ -108,11 +121,20 @@ text(1:p,X_pcs$rotation[,2],labels=colnames(X),pos=1,col=color_4,cex=0.75)
 # Note the different groups in the data
 # The radius is arbitrary
 
-plot(X_pcs$rotation[,1:2],pch=19,col=color_1,main="Weights for the first two PCs")
+plot(X_pcs$rotation[,1:2],
+     pch=19,
+     col=color_1,
+     main = "PCA graph of variables \n Weights for the first two PCs",
+     xlim = c(-1,1),
+     ylim = c(-1,1),
+     xlab = "PC1 (19.46%)",
+     ylab = "PC2 (17.22%)"
+     )
 abline(h=0,v=0)
 text(X_pcs$rotation[,1:2],labels=colnames(X),pos=1,col=color_4,cex=0.75)
 library(plotrix)
-draw.circle(0,0,0.4,border=color_4,lwd=3)
+draw.circle(0,0,1,border=color_4,lwd=1)
+
 
 ##################################################################################################################
 # The biplot is an alternative way to plot points and the first two PCs together 
@@ -186,6 +208,18 @@ corrplot(cor(X,X_pcs$x[,1:4]),is.corr=T)
 
 ##################################################################################################################
 ##################################################################################################################
+# playing with factominer
+##################################################################################################################
+##################################################################################################################
+library(FactoMineR)
+
+
+res<-PCA(X, scale.unit=TRUE, ncp=4, graph = FALSE)
+plot(res, axes=c(1, 2), choix="ind", col.ind="red",new.plot=TRUE)
+plot(res, axes=c(1, 2), choix="var", col.var="blue",new.plot=TRUE)
+
+##################################################################################################################
+##################################################################################################################
 # Analysis 2: All the population
 ##################################################################################################################
 ##################################################################################################################
@@ -241,12 +275,22 @@ pdf(file = "figure_output/pca_groups.pdf",   # The directory you want to save th
 
 # Step 2: Create the plot with R code
 par(mfrow=c(1,2))
-plot(X_pcs_death$x[,1:2],pch=19,col=colors_sex, main = "First 2 PC by Sex for death patients")
-plot(X_pcs_surv$x[,1:2],pch=19,col=colors_sex, main = "First 2 PC by Sex for survival patients")
+plot(X_pcs_death$x[,1:2],pch=19,col=colors_sex, 
+     main = "PCA graph of death patients \n First 2 PC by sex",
+     xlab = "PC1 (19.1%)",
+     ylab = "PC2 (16.1%)")
+plot(X_pcs_surv$x[,1:2],pch=19,col=colors_sex, 
+     main = "PCA graph of survival patients \n First 2 PC by sex",
+     xlab = "PC1 (19.8%)",
+     ylab = "PC2 (17.5%)")
 par(mfrow=c(1,1))
 
 # Step 3: Run dev.off() to create the file!
 dev.off()
+
+
+
+
 
 
 ##################################################################################################################
@@ -280,6 +324,38 @@ text(1:p_surv,X_pcs_surv$rotation[,2],labels=colnames(X_surv),pos=1,col=color_4,
 
 par(mfrow=c(1,1))
 
+
+## both plots
+par(mfrow=c(1,2))
+plot(X_pcs_death$rotation[,1:2],
+     pch=19,
+     col=color_1,
+     main = "PCA graph of variables (death patients) \n Weights for the first two PCs",
+     xlim = c(-1,1),
+     ylim = c(-1,1),
+     xlab = "PC1 (19.1%)",
+     ylab = "PC2 (16.1%)"
+)
+abline(h=0,v=0)
+text(X_pcs_death$rotation[,1:2],labels=colnames(X_death),pos=1,col=color_4,cex=0.75)
+draw.circle(0,0,1,border=color_4,lwd=1)
+## plot 2
+plot(X_pcs_surv$rotation[,1:2],
+     pch=19,
+     col=color_1,
+     main = "PCA graph of variables (survival patients) \n Weights for the first two PCs",
+     xlim = c(-1,1),
+     ylim = c(-1,1),
+     xlab = "PC1 (19.8%)",
+     ylab = "PC2 (17.5%)"
+)
+abline(h=0,v=0)
+text(X_pcs_surv$rotation[,1:2],labels=colnames(X_surv),pos=1,col=color_4,cex=0.75)
+draw.circle(0,0,1,border=color_4,lwd=1)
+par(mfrow=c(1,1))
+
+
+
 ## biplot
 
 # Step 1: Call the pdf command to start the plot
@@ -300,8 +376,3 @@ dev.off()
 wpc_death <-  fviz_eig(X_pcs_death,ncp=8,addlabels=T,barfill=color_1,barcolor=`color_4`)
 fviz_eig(X_pcs_surv,ncp=8,addlabels=T,barfill=color_1,barcolor=`color_4`)
 
-
-par(mfrow=c(1,2))
-wpc_death
-wpc_death
-par(mfrow=c(1,1))

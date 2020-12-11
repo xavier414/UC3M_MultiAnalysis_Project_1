@@ -7,7 +7,7 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(fig.width=10, fig.height=5)
+knitr::opts_chunk$set(fig.width=10, fig.height=4.5)
 
 # Libraries
 library(ggplot2)
@@ -32,8 +32,8 @@ rm(clinical_trial_complete)
 # Remember: This add some log transformations:
 
 color_1 <- "deepskyblue2"
-color_2 <- "orange2"
-color_3 <- "seagreen2"
+color_2 <- "orange2"        # death
+color_3 <- "seagreen2"      # survival
 color_4 <- "darkorchid4"
 ```
 
@@ -111,8 +111,6 @@ kable(t(table),
       caption="Count of distinct values of each variable", 
       align="c")
 ```
-
-\newpage
 
 ## Visual Analysis
 
@@ -508,7 +506,7 @@ figure \ref{fig:l1pc}...
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-```{r l1pc, fig.cap = "Loadings for the first PC\\label{fig:l1pc}", echo=FALSE}
+```{r l1pc, fig.cap = "Loadings for the first and sencond PCs individually\\label{fig:l1pc}", echo=FALSE}
 # Categorical variables
 Y <- X[,c(1,3,6)]
 X <- X_quan
@@ -516,35 +514,39 @@ n <- nrow(X)
 p <- ncol(X)
 X_pcs <- prcomp(X,scale=TRUE)
 
-
+par(mfrow=c(1,2))
 plot(1:p,X_pcs$rotation[,1],pch=19,col=color_1,main="Weights for the first PC",
-     xlab="Variables",ylab="Score")
+     xlab="Variables",ylab="Score", xlim = c(1, 9), ylim = c(-1, 1))
 abline(h=0)
 text(1:p,X_pcs$rotation[,1],labels=colnames(X),pos=1,col=color_4,cex=0.75)
-```
-
-
-figure \ref{fig:l1pc}...
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-```{r l2pc, fig.cap = "Loadings for the second PC\\label{fig:l2pc}", echo=FALSE}
+# plot 2
 plot(1:p,X_pcs$rotation[,2],pch=19,col=color_1,main="Weights for the second PC",
-     xlab="Variables",ylab="Score")
+     xlab="Variables",ylab="Score",xlim = c(1, 9), ylim = c(-1, 1))
 abline(h=0)
 text(1:p,X_pcs$rotation[,2],labels=colnames(X),pos=1,col=color_4,cex=0.75)
+
 ```
 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 figure \ref{fig:l3pc}...
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 ```{r l3pc, fig.cap = "Loadings for the first two PC\\label{fig:l3pc}", echo=FALSE}
-plot(1:p,X_pcs$rotation[,2],pch=19,col=color_1,main="Weights for the second PC",
-     xlab="Variables",ylab="Score")
-abline(h=0)
-text(1:p,X_pcs$rotation[,2],labels=colnames(X),pos=1,col=color_4,cex=0.75)
+plot(X_pcs$rotation[,1:2],
+     pch=19,
+     col=color_1,
+     main = "PCA graph of variables \n Weights for the first two PCs",
+     xlim = c(-1,1),
+     ylim = c(-1,1),
+     xlab = "PC1 (19.46%)",
+     ylab = "PC2 (17.22%)"
+     )
+abline(h=0,v=0)
+text(X_pcs$rotation[,1:2],labels=colnames(X),pos=1,col=color_4,cex=0.75)
+library(plotrix)
+draw.circle(0,0,1,border=color_4,lwd=1)
 ```
 
 
@@ -594,7 +596,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 figure \ref{fig:l1pcgrp}...
 
-```{r l1pcgrp, fig.cap = "Loadings for the first PC by death and survival patients\\label{fig:l1pcgrp}", echo=FALSE}
+```{r l1pcgrp, fig.cap = "Loadings for the first two PC by death and survival patients\\label{fig:l1pcgrp}", echo=FALSE}
 load('rda/clinical_trial_complete.rda')
 X <- clinical_trial_complete[,-c(1,11,13,14,15,16,18)]
 
@@ -626,16 +628,44 @@ p_surv <- ncol(X_surv)
 X_pcs_surv <- prcomp(X_surv,scale=TRUE)
 
 
-par(mfrow=c(1,2))
-plot(1:p_death,X_pcs_death$rotation[,1],pch=19,col=color_1,main="Weights for the first PC death patients",
-     xlab="Variables",ylab="Score")
-abline(h=0)
-text(1:p_death,X_pcs_death$rotation[,1],labels=colnames(X_death),pos=1,col=color_4,cex=0.75)
+#par(mfrow=c(1,2))
+#plot(1:p_death,X_pcs_death$rotation[,1],pch=19,col=color_1,main="Weights for the first PC death patients",
+#     xlab="Variables",ylab="Score")
+#abline(h=0)
+#text(1:p_death,X_pcs_death$rotation[,1],labels=colnames(X_death),pos=1,col=color_4,cex=0.75)
 
-plot(1:p_surv,X_pcs_surv$rotation[,1],pch=19,col=color_1,main="Weights for the first PC survival patients",
-     xlab="Variables",ylab="Score")
-abline(h=0)
-text(1:p_surv,X_pcs_surv$rotation[,1],labels=colnames(X_surv),pos=1,col=color_4,cex=0.75)
+#plot(1:p_surv,X_pcs_surv$rotation[,1],pch=19,col=color_1,main="Weights for the first PC survival patients",
+#     xlab="Variables",ylab="Score")
+#abline(h=0)
+#text(1:p_surv,X_pcs_surv$rotation[,1],labels=colnames(X_surv),pos=1,col=color_4,cex=0.75)
+
+par(mfrow=c(1,2))
+plot(X_pcs_death$rotation[,1:2],
+     pch=19,
+     col=color_1,
+     main = "PCA graph of variables (death patients) \n Weights for the first two PCs",
+     xlim = c(-1,1),
+     ylim = c(-1,1),
+     xlab = "PC1 (19.1%)",
+     ylab = "PC2 (16.1%)"
+)
+abline(h=0,v=0)
+text(X_pcs_death$rotation[,1:2],labels=colnames(X_death),pos=1,col=color_4,cex=0.75)
+draw.circle(0,0,1,border=color_4,lwd=1)
+## plot 2
+plot(X_pcs_surv$rotation[,1:2],
+     pch=19,
+     col=color_1,
+     main = "PCA graph of variables (survival patients) \n Weights for the first two PCs",
+     xlim = c(-1,1),
+     ylim = c(-1,1),
+     xlab = "PC1 (19.8%)",
+     ylab = "PC2 (17.5%)"
+)
+abline(h=0,v=0)
+text(X_pcs_surv$rotation[,1:2],labels=colnames(X_surv),pos=1,col=color_4,cex=0.75)
+draw.circle(0,0,1,border=color_4,lwd=1)
+
 ```
 
 
@@ -643,18 +673,6 @@ figure \ref{fig:l2pcgr}...
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-```{r l2pcgr, fig.cap = "Loadings for the second PC by death and survival patients\\label{fig:l2pcgr}", echo=FALSE}
-par(mfrow=c(1,2))
-plot(1:p_death,X_pcs_death$rotation[,2],pch=19,col=color_1,main="Weights for the second PC death patients",
-     xlab="Variables",ylab="Score")
-abline(h=0)
-text(1:p_death,X_pcs_death$rotation[,2],labels=colnames(X_death),pos=1,col=color_4,cex=0.75)
-
-plot(1:p_surv,X_pcs_surv$rotation[,2],pch=19,col=color_1,main="Weights for the second PC survival patients",
-     xlab="Variables",ylab="Score")
-abline(h=0)
-text(1:p_surv,X_pcs_surv$rotation[,2],labels=colnames(X_surv),pos=1,col=color_4,cex=0.75)
-```
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
