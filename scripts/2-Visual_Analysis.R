@@ -43,6 +43,11 @@ plothist(col_name = "injurytime", df = X,ylabtext = "All participants", color_1)
 
 plothist(col_name = "log_injurytime", df = X,ylabtext = "All participants", color_1, breaks = 10, density_plot = FALSE)
 
+
+plothistlog(col_name = "injurytime", colname_log = "log_injurytime" ,df = X,ylabtext = "All participants", color_1)
+
+
+
 # 3. sbp
 plothist(col_name = "sbp", df = X,ylabtext = "All participants", color_1)
 

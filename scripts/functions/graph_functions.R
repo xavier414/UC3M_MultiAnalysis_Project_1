@@ -1,4 +1,51 @@
 #Graph functions
+plothistlog <- function(col_name,colname_log, df, ylabtext, color_1, breaks_colname = "Sturges",breaks_colname_log,  density_plot = TRUE) {
+  
+    par(mfrow=c(2,2))
+    hist(df[[col_name]],
+         main = paste("Histogram of", col_name),
+         xlab = col_name,
+         col = color_1,
+         freq = FALSE,
+         breaks = breaks_colname
+    )
+    boxplot(df[[col_name]],
+            main= paste("Boxplot of", col_name),
+            xlab= col_name,
+            ylab=ylabtext,
+            col=color_1,
+            horizontal=TRUE)
+    ## part 2: log plots
+    hist(df[[colname_log]],
+         main = paste("Histogram of", colname_log),
+         xlab = col_name,
+         col = color_1,
+         freq = FALSE,
+         breaks = breaks_colname_log
+    )
+    boxplot(df[[colname_log]],
+            main= paste("Boxplot of", colname_log),
+            xlab= colname_log,
+            ylab=ylabtext,
+            col=color_1,
+            horizontal=TRUE)
+    par(mfrow=c(1,1))
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 plothist <- function(col_name, df, ylabtext, color_1, breaks = "Sturges", density_plot = TRUE) {
   
