@@ -171,9 +171,9 @@ plothist(col_name = "sbp", df = X, ylabtext = "All participants",  color_1, dens
 plothistlog(col_name = "rr", colname_log = "log_rr" ,df = X, breaks_colname_log = 8, ylabtext = "All participants", color_1)
 ```
 
-In the case of *hr* (Heart rate), Figure \ref{fig:hr} has a distribution that seems fairly balanced at around 110, similar to the variables above, like *sbp* and *rr*. However, many values remain outside the whiskers and the IQR is quite tight, showing most people fall within a tight range but there is a number of people who have irregular rates on either side. NOT A CANDIDATE FOR LOG?
+\newpage
 
-
+In the case of *hr* (Heart rate), Figure \ref{fig:hr} has a distribution that seems fairly balanced at around 110, similar to the variables above, like *sbp* and *rr*. However, many values remain outside the whiskers and the IQR is quite tight, showing most people fall within a tight range but there is a number of people who have irregular rates on either side.
 
 ```{r hr, fig.cap = "Distribution of hh (hearth Rate)\\label{fig:hr}", echo=FALSE}
 plothist(col_name = "hr", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
@@ -280,7 +280,7 @@ plothist_factor("log_cc", "death", X, "Death", color_2, color_3, density_plot = 
 ```
 
 
-
+\newpage
 
 Figure \ref{fig:logndaysicudeath}, shows that days in the ICU (ndaysicu), has a very similar distribution with an identical median, likely due to the fact that most people who suffer from trauma injuries only spend a very limited relative amount of time in ICU. We see that, for those who survive (0), the 75% quartile is slightly larger, and when reviewing the histogram, more observations are on the further right end of the spectrum (more relative days in hospital). This possibly indicates to us that those who are more likely to survive are kept in the ICU for longer to heal some cases.
 
@@ -302,28 +302,26 @@ Figure \ref{fig:logncelldeath} shows the *log* value of  red blood cells transfu
 plothist_factor("log_ncell", "death", X, "Death", color_2, color_3, density_plot = FALSE)
 ```
 
+\newpage
 
 
-
-Finally, the scatter plot in Figure 23 we cannot see any significant relationships but the variables, while accounting for Death. There does not seem be any visual relationship between any of the varibales that are outstanding. 
-
-
+Finally, the scatter plot in Figure 18 we cannot see any significant relationships but the variables, while accounting for Death. There does not seem be any visual relationship between any of the variables that are outstanding. 
 
 
 ![Scatter plot of all quantitiative variables](figure_output/pairs_death.png)
 
+\newpage
 
-
-The PCP plot in Figure 24, generally matches with our observations about the scatterplot, that comparing those who survive and do not, follow the same visual pattern. For *log_cc*, *hr*, and *log_ndaysicu*, those who survive appear to have values that are more broadly dispersed, but this could be due to the fact those who survive represent a majority of the sample size. Although, comparing with the histograms and box plots, *log_cc*, *hr*, and *log_ndaysicu* do appear to have more dispersed distributions and wider IQRs. 
+The PCP plot in Figure 19, generally matches with our observations about the scatterplot, that comparing those who survive and do not, follow the same visual pattern. For *log_cc*, *hr*, and *log_ndaysicu*, those who survive appear to have values that are more broadly dispersed, but this could be due to the fact those who survive represent a majority of the sample size. Although, comparing with the histograms and box plots, *log_cc*, *hr*, and *log_ndaysicu* do appear to have more dispersed distributions and wider IQRs. 
 
 
 
 
 ![PCP plot of all quantitiative variables](figure_output/pcp_death.png)
 
+\newpage
 
-
-The Andrews' plot in Figure 25, matches our previous analysis in Figure 23 and 24, that variables share similar distributions and relationships when accounting for Death, as the Andrew Plot does not show any dramatic differences between the two groups.
+The Andrews' plot in Figure 20, matches our previous analysis in Figure 18 and 19, that variables share similar distributions and relationships when accounting for Death, as the Andrew Plot does not show any dramatic differences between the two groups.
 
 
 
@@ -432,6 +430,8 @@ knitr::kable(S_death,
 ```
 
 
+\newpage
+
 The following below is the  Sample covariance matrix for patients who survived (*death* = 0).
 
 
@@ -446,8 +446,22 @@ knitr::kable(S_life,
 
 
 
-We do not see in many of the categories, large 
+We do not see in many of the categories, large ...
 
+
+Ohter additional measure of dispersion is called the *Generalized variance*, which is defined as the determinant of the sample convariance. In the case of the three previous covaraince table, the generalized variance is given by the following table:
+
+
+```{r, echo=FALSE}
+determ = c(det(S),det(S_death),det(S_life))
+gener_var <- data.frame(t(determ))
+colnames(gener_var) <- c("All population", "Death", "Survive")
+
+
+knitr::kable(gener_var,
+      caption = "Generalized variance",
+      align="c")
+```
 
 
 
@@ -509,19 +523,13 @@ knitr::kable(R_life,
       align="c")
 ```
 
+Heatmap \ref{fig:heatmap} ... and Figure \ref{fig:corrgroup}, as provided are correlation plots while controlling for death
 
+```{r heatmap, fig.cap = "Heatmap difference between correlation atrices\\label{fig:heatmap}", echo=FALSE}
 
-```{r diff, 1}
-
-R_diff = R_life - R_death 
-R_diff
-heatmap(R_diff,  Colv = NA)
-
+R_diff <-  R_life - R_death 
+heatmap(R_diff, Colv = NA, Rowv = NA, scale="column", main="Heatmap: Difference of Matrix correlations death and survival")
 ```
-
-
-Figure \ref{fig:corrgroup}, as provided are correlation plots while controlling for death. 
-
 
 
 ```{r corrgroup, fig.cap = "Sample Correlation for death and survival patients from Crash2 Dataset\\label{fig:corrgroup}", echo=FALSE}
@@ -867,8 +875,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ## References
 
-1. Banegas JR, de la Cruz JJ, Rodríguez-Artalejo F, Graciani A, Guallar-Castillón P, Herruzo R. Systolic vs diastolic blood pressure: community burden and impact on blood pressure staging. J Hum Hypertens. 2002 Mar;16(3):163-7. doi: 10.1038/sj.jhh.1001310. PMID: 11896505.
+1. Banegas JR, de la Cruz JJ, Rodriguez-Artalejo F, Graciani A, Guallar-Castillon P, Herruzo R. Systolic vs diastolic blood pressure: community burden and impact on blood pressure staging. J Hum Hypertens. 2002 Mar;16(3):163-7. doi: 10.1038/sj.jhh.1001310. PMID: 11896505.
 
 2. S. Kurl, J.A. Laukkanen, R. Rauramaa, T.A. Lakka, J. Sivenius, and J.T. Salonen. Systolic Blood Pressure Response to Exercise Stress Test and Risk of Stroke.  Sep 2001 https://doi.org/10.1161/hs0901.095395Stroke. 2001;32:2036–2041
 
-3. Ratner, B. The correlation coefficient: Its values range between +1/−1, or do they?. J Target Meas Anal Mark 17, 139–142 (2009). https://doi.org/10.1057/jt.2009.5
+3. Ratner, B. The correlation coefficient: Its values range between $+1/-1$, or do they? J Target Meas Anal Mark 17, $139-142$ (2009). https://doi.org/10.1057/jt.2009.5
+
+
