@@ -17,13 +17,17 @@ Project 1 Course Multivariate Analysis
 
   3.1) File "Project_Report.Rmd" is the first exploration of the data set
 
-  3.2) File "Step1_Project.Rmd" is the first study of the data set:
-    a) Visual Analysis
-    b) Sample Estimators
-    c) PCA
+  **3.2) File "Step1_Project.Rmd" is the first study of the data set:**
+  
+  a) Visual Analysis
+  
+  b) Sample Estimators
+  
+  c) PCA
     
-4) Final version of the document is:
+**4) Final version of the document is:**
 
  4.1) Project_Report.pdf
- 4.2) Step1_Project.pdf ### IN CONSTRUCTION!
+ 
+ **4.2) Step1_Project.pdf ### IN CONSTRUCTION!**
  
