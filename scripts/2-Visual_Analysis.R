@@ -44,7 +44,7 @@ plothist(col_name = "injurytime", df = X,ylabtext = "All participants", color_1)
 plothist(col_name = "log_injurytime", df = X,ylabtext = "All participants", color_1, breaks = 10, density_plot = FALSE)
 
 
-plothistlog(col_name = "injurytime", colname_log = "log_injurytime" ,df = X,ylabtext = "All participants", color_1)
+plothistlog(col_name = "injurytime", colname_log = "log_injurytime" ,df = X, breaks_colname_log = 10, ylabtext = "All participants", color_1)
 
 
 
@@ -58,6 +58,10 @@ plothist(col_name = "rr", df = X,ylabtext = "All participants", color_1)
 
 plothist(col_name = "log_rr", df = X,ylabtext = "All participants", color_1, breaks = 8 ,density_plot = FALSE)
 
+
+plothistlog(col_name = "rr", colname_log = "log_rr" ,df = X, breaks_colname_log = 8, ylabtext = "All participants", color_1)
+
+
 # 5. cc
 
 ## skewed
@@ -65,6 +69,7 @@ plothist(col_name = "cc", df = X,ylabtext = "All participants", color_1)
 
 plothist(col_name = "log_cc", df = X,ylabtext = "All participants", color_1, breaks = 8, density_plot = FALSE)
 
+plothistlog(col_name = "cc", colname_log = "log_cc" ,df = X, breaks_colname_log = 8, ylabtext = "All participants", color_1)
 
 
 # 6. hr
@@ -80,12 +85,18 @@ plothist(col_name = "ndaysicu", df = X,ylabtext = "All participants", color_1)
 
 plothist(col_name = "log_ndaysicu", df = X,ylabtext = "All participants", color_1, breaks = 10, density_plot = FALSE)
 
+plothistlog(col_name = "ndaysicu", colname_log = "log_ndaysicu" ,df = X, breaks_colname_log = 10, ylabtext = "All participants", color_1)
+
+
+
 # 8. ncell
 
 ## Skewed
 plothist(col_name = "ncell", df = X,ylabtext = "All participants", color_1)
 
 plothist(col_name = "log_ncell", df = X,ylabtext = "All participants", color_1, breaks = 8 ,density_plot = FALSE)
+
+plothistlog(col_name = "ncell", colname_log = "log_ncell" ,df = X, breaks_colname_log = 8, ylabtext = "All participants", color_1)
 
 
 # Categorical variables

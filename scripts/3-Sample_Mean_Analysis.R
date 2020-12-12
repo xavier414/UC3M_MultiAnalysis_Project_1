@@ -170,8 +170,85 @@ parcoord(X_quan,
 # Step 3: Run dev.off() to create the file!
 dev.off()
 
-
-
-
 library(MASS)
 parcoord(X,col=col_outliers_Mah_MCD,var.label=TRUE,main="PCP for milk contents")
+
+
+#################################
+
+
+library(mvnormtest)
+mvnormtest::mshapiro.test(t(X_quan))
+
+det(cov(X_quan))
+
+det(cov(X_death))
+
+det(cov(X_life))
+
+
+library(Hotelling)
+fit <- hotelling.test(X_death, X_life)
+fit
+
+
+
+library(ICSNP)
+HotellingsT2(X_death, X_life)
+
+
+# Null hyphotesis;
+## There is no difference between the two means vectors.
+
+# Alterntive hyphotesis:
+## There is a difference between tthe two means vectors
+
+## How to proof normality?
+
+
+
+
+## Conclusions:
+#We reject the the null hyphotesis.
+
+# In this case, The null hyphotesis will be rejected if or more components, of some combinations of means differs
+too much 
+
+
+Find X1, X2,
+S1 S2
+
+
+X1 <- colMeans(X_death)
+S1 <- cov(X_death)
+n1 <- nrow(X_death)
+
+
+X2 <- colMeans(X_life)
+S2 <- cov(X_life)
+n2 <- nrow(X_life)
+
+
+S <- ((n1-1)*S1 + (n2 - 1)*S2)/(n1+n2 - 2)
+S_inv <- solve(S)
+
+dim(S_inv)
+
+dif_means <- as.matrix(X1 - X2)
+
+dim(dif_means)
+ 
+T2 <-  (n1*n2/(n1+n2)) * (t(dif_means))%*%S_inv%*%(dif_means)
+T2
+
+
+
+heatmap(S_inv, Colv = NA, Rowv = NA, scale="column")
+
+
+df(0.10, 3, 17)
+
+library(ggplot2)
+ggplot(S_inv) + 
+    geom_tile()
+
