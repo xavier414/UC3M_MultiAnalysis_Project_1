@@ -111,6 +111,10 @@ str(X[,-c(12:16)])
 A summary of the values in the data set are:
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
 ```{r echo=FALSE}
 summary(X[,-c(12:16)])
 ```
@@ -140,11 +144,21 @@ In the case of *age*, the Figure \ref{fig:age} reflects how this variable appear
 
 
 
+
+
 ```{r age, fig.cap = "Distribution of age variable\\label{fig:age}", echo=FALSE}
 plothist(col_name = "age", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
 ```
 
-The Figure \ref{fig:injurytime} below shows the distribution of the variable Injury  (*injurytime*) We can see how this variable is highly skewed to the left with almost all values falling below ten minutes since the injury was experienced. This is likely due to the fact, that in cases of serious injury, victims are brought to the hospital quite quickly as is the case for this data set on trauma. We apply a *log* transformation to this variable `log_injurytime = log(injurytime + 1)`, similarly to many other variables we have, because of the weight of the variables to the left of the distribution, in order to make a more normalized distribution. The *log* transformation as we can see in the below of Figure \ref{fig:injurytime}. After the *log* transformation, we can see that two observations remain quite separate , with a value of four, that appears as potential outlier to the distribution, as they have almost 4 times the median value. 
+<<<<<<< HEAD
+
+The Figure \ref{fig:injurytime} below shows the distribution of the variable Injury  (*injurytime*) We can see how this variable is highly skewed to the left with almost all values falling below ten minutes since the injury was experienced. This is likely due to the fact, that in cases of serious injury, victims are brought to the hospital quite quickly as is the case for this data set on trauma. We apply a *log* transformation to this variable `log_injurytime = log(injurytime + 1)`, similarly to many other variables we have, because of the weight of the variables to the left of the distribution, in order to make a more normalized distribution.After the *log* transformation, we can see that two observations remain quite distinct and far to the right, with a value of four. They appear as potential outliers to the distribution, as they have almost 4 times the median value.
+
+=======
+
+The Figure \ref{fig:injurytime} below shows the distribution of the variable Injury  (*injurytime*) We can see how this variable is highly skewed to the left with almost all values falling below ten minutes since the injury was experienced. This is likely due to the fact, that in cases of serious injury, victims are brought to the hospital quite quickly as is the case for this data set on trauma. We apply a *log* transformation to this variable `log_injurytime = log(injurytime + 1)`, similarly to many other variables we have, because of the weight of the variables to the left of the distribution, in order to make a more normalized distribution.After the *log* transformation, we can see that two observations remain quite distinct and far to the right, with a value of four. They appear as potential outliers to the distribution, as they have almost 4 times the median value. REPEATED PARAGRAPH FROM ABOVE!
+
+>>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
 
 
 
@@ -154,7 +168,7 @@ plothistlog(col_name = "injurytime", colname_log = "log_injurytime" ,df = X, bre
 
 
 
-For *sbp* (Systolic Blood Pressure), the distribution is a fairly centrally balanced distribution around 90 mmHg. This is logical as a sample of biological characteristics observed in a population is likely to have most people around the mean and then a reasonably tight distribution of those who differ, similar to that of other biological features like height. Furthermore, most people are fairly young in the sample and therefore would have rates that deviant less from the norm, at a healthy level. The distribution is given by Figure \ref{fig:sbp}.
+For *sbp* (systolic blood pressure), the distribution is a fairly centrally balanced distribution around 90 mmHg. Most observations around the mean and then a reasonably tight distribution of those who differ, making a distribution that is fairly Gaussian by nature. Furthermore, most people are fairly young in the sample and therefore would have rates, at a healthy level, that deviant less from the norm. The distribution is shown below in Figure \ref{fig:sbp}.
 
 
 
@@ -162,7 +176,7 @@ For *sbp* (Systolic Blood Pressure), the distribution is a fairly centrally bala
 plothist(col_name = "sbp", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
 ```
 
-*rr* (Respiratory Rate) appears, similar to sbp, resembling a moderately balanced distribution around 22 respirations per minute, although *rr* is weighted more to the left. The distribution of this variable is showed in Figure \ref{fig:rr}. Taking a *log* transformation `log_rr = log(rr)`, we have the new distribution below as part of Figure \ref{fig:rr}. After the log transformation, the distribution remains quite spread out with a number fo values beyond the whiskers of the box plot. The *log* transformation in this case has not significantly changed the shape of the distribution, it does not shift much more towards a normal distribution after the *log* transformation.
+*Rr* (Respiratory Rate) appears, similar to sbp, to resemble a moderately balanced distribution around 22 respirations per minute, although *rr* is weighted more to the left. The distribution of this variable is showed in Figure \ref{fig:rr}. Taking a *log* transformation `log_rr = log(rr)`, we have the new distribution below as part of Figure \ref{fig:rr}. After the log transformation, the distribution remains quite spread out with a number fo values beyond the whiskers of the box plot. The *log* transformation in this case has not significantly changed the shape of the distribution, it does not shift much more towards a normal distribution after the *log* transformation.
 
 
 
@@ -171,15 +185,23 @@ plothist(col_name = "sbp", df = X, ylabtext = "All participants",  color_1, dens
 plothistlog(col_name = "rr", colname_log = "log_rr" ,df = X, breaks_colname_log = 8, ylabtext = "All participants", color_1)
 ```
 
+<<<<<<< HEAD
+
+In the case of *hr* (Heart rate), Figure \ref{fig:hr} has a distribution that seems fairly balanced at around 110, similar to the variables above, like *sbp* and *rr*. However, many values remain outside the whiskers and the IQR is quite tight, showing most people fall within a tight range but there is a number of people who have irregular rates on either side. NOT A CANDIDATE FOR LOG?
+
+
+=======
 \newpage
 
-In the case of *hr* (Heart rate), Figure \ref{fig:hr} has a distribution that seems fairly balanced at around 110, similar to the variables above, like *sbp* and *rr*. However, many values remain outside the whiskers and the IQR is quite tight, showing most people fall within a tight range but there is a number of people who have irregular rates on either side.
+In the case of *hr* (Heart rate), Figure \ref{fig:hr} has a distribution that seems fairly balanced at around 110, similar to the variables above, like *sbp* and *rr*. However, many values remain outside the whiskers and the IQR is quite tight, showing most people fall within a tight range but there is a number of people who have irregular rates on either side. REPEAT OF PARAGRAPH ABOVE!
 
-```{r hr, fig.cap = "Distribution of hh (hearth Rate)\\label{fig:hr}", echo=FALSE}
+>>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
+
+```{r hr, fig.cap = "Distribution of hh (Heart Rate)\\label{fig:hr}", echo=FALSE}
 plothist(col_name = "hr", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
 ```
 
-For *cc* (Central capillary) refill has 75% of the observations below roughly 4 as we can appreciate in Figure \ref{fig:cc}. However, the distribution is right-skewed. As a result, we apply a *log* transformation `log_cc = log(cc)` that is given in the below part Figure \ref{fig:cc}. The log has made the distribution more normal, and was quite successful in this case. There remains a number of observations to the far right of the distribution, which could be possible outliers as the represent values approximately three times the median. 
+For *cc* (Central capillary refill time in seconds) has 75% of the observations below roughly 4 as we can appreciate in Figure \ref{fig:cc}. However, the distribution is right-skewed. As a result, we apply a *log* transformation `log_cc = log(cc)` that is given in the below part of Figure \ref{fig:cc}. The log has made the distribution more normal, and was quite successful in this case. There remains a number of observations to the far right of the distribution, which could be possible outliers as the represent values approximately three times the median. 
 
 
 
@@ -187,7 +209,7 @@ For *cc* (Central capillary) refill has 75% of the observations below roughly 4 
 plothistlog(col_name = "cc", colname_log = "log_cc" ,df = X, breaks_colname_log = 8, ylabtext = "All participants", color_1)
 ```
 
-The Figure \ref{fig:ndaysicu} shows the distribution of the *ndaysicu:* variable. In this case, the distribution is heavily weighted to the left and right-skewed. Most patients it seems, with injuries at high risk of bleeding, do not often need to remain in the hospital for long. The transformed distribution `log_ndaysicu = log(ndaysicu + 1)` is given in the below part of figure \ref{fig:ndaysicu}. After the *log* transformation, this distribution doesn't appear much more gaussian in nature. The values are still heavily weighted the left. No values appear outside the whiskers, however, therefore this leads us to believe that there is not much likelihood of outliers in this distribution.
+The following Figure \ref{fig:ndaysicu} shows the distribution of the *ndaysicu:* variable. In this case, the distribution is heavily weighted to the left and right-skewed. Most patients it seems, with trauma injuries at high risk of bleeding, do not often need to remain in the hospital for long. The transformed distribution `log_ndaysicu = log(ndaysicu + 1)` is given in the below part of Figure \ref{fig:ndaysicu}. After the *log* transformation, this distribution doesn't appear much more Gaussian in nature. The values are still heavily weighted the left. No values appear outside the whiskers, however, therefore this leads us to believe that there is not much likelihood of outliers in this distribution.
 
 
 
@@ -196,7 +218,7 @@ plothistlog(col_name = "ndaysicu", colname_log = "log_ndaysicu" ,df = X, breaks_
 
 ```
 
-Finally, for the *ncell* distribution is weighted to the left with a median of 3 as we can appreciate in the figure \ref{fig:ncell}. The conclusion of this, is that many patients only need a small number of or zero units of red cell products transfused. Due to this variable being highly weighted to the right, we apply the *log* transformation  `log_ncell = log(ncell + 1)` of the figure \ref{fig:ncell} in their below part of the Figure. After transformation, the variables visually appears to be more Gaussian, but a large number of values remain outside the whiskers on the right of the distribution, though none appear distinct enough for the others to be outliers.
+Finally, the *ncell* distribution is weighted to the left with a median of 3 as we can see in the Figure \ref{fig:ncell}. The conclusion of this, is that many patients only need a small number of or zero units of red cell products transfused. Due to this variable being highly weighted to the left, we apply the *log* transformation  `log_ncell = log(ncell + 1)`. After the transformation, the variables visually appears to be more Gaussian, but a large number of values remain outside the whiskers on the right of the distribution. None, however, appear to be distinct enough from the others to be outliers.
 
 
 
@@ -205,7 +227,7 @@ Finally, for the *ncell* distribution is weighted to the left with a median of 3
 plothistlog(col_name = "ncell", colname_log = "log_ncell" ,df = X, breaks_colname_log = 8, ylabtext = "All participants", color_1)
 ```
 
-For the categorical variables, we will focus on the distributions of deaths, where 0 represents survival. The Figure \ref{fig:deaths}, shows that approximately for each death, 4 people survive. In the context of this problem, if we have an unbalanced proportion of people that survive, it can be considered as a sign that most people survive trauma injuries in the data set and that with the administration of the drug, most people survive . Although, this is not necessarily due to the administration of the drug as both the control and treatment are contained in this data set.
+Our primary categorical variable will be the distributions of *death*, where 0 represents people who surive and 1 for those who do not survive. The Figure \ref{fig:deaths}, shows that approximately for each death, 4 people survive. In the context of this problem, if we have an unbalanced proportion of people that survive, it can be considered as a sign that most people survive trauma injuries in the data set and that with the administration of the drug, most people survive . Although, this is not necessarily due to the treatment with the drug as both the control and treatment sample are contained in this data set, and were not separated (due to the absence of the treatment variable).
 
 
 ```{r deaths, fig.cap = "Distribution of deaths\\label{fig:deaths}", echo=FALSE}
@@ -220,11 +242,10 @@ ggplot(X) +
 ### Univariate Analysis by death - survival patients
 
 
+Out next step is to study some relations of the quantitative variables in terms of our central categorical variable *death*. 
 
-On the other hand, we can study some relations of the quantitative variables in terms of the categorical variable death. 
 
-
-Figure \ref{fig:agedeath}, shows us that those who survive (0) are on average younger than those who do not survive, which is logical, as younger people likely fair better in trauma accidents (at risk of significant bleeding, which this trail assesses). Aside from the median being slightly smaller than for those who survive, the distributions are fairly similar with a scew to the right. Participants in this trial are on average are quite young, roughly 3-, which could be due to sampling, but also because younger people are more likely to suffer from trauma accidents due to the jobs that they do and a increased propensity for risk taking behaviour. 
+Figure \ref{fig:agedeath}, shows us that those who survive (0) are on average younger than those who do not survive, which is logical, as younger people likely fair better in trauma accidents where there is a risk of significant bleeding (which this trail assesses). Aside from the median being slightly smaller than for those who survive, the distributions are fairly similar with a scew to the right. Participants in this trial are on average are quite young, roughly 34.7, which could be due to sampling, but also because younger people are more likely to suffer from trauma accidents due to having jobs with an increased propensity of injury and also more general for risk taking behaviour. 
 
 
 
@@ -234,7 +255,7 @@ plothist_factor("age", "death", X, "Death", color_2, color_3, density_plot = FAL
 
 
 
-Figure \ref{fig:loginjurytimedeath} showing *log* injury time in comparison, those who do not survive have longer relative injury time on average, and the IQR is also wider as well as the whiskers. However, there are still values of those with longer injury times who did survive, however they appare less frequently.
+Figure \ref{fig:loginjurytimedeath} showing *log injury time* demonstrates that those who survive (1) have longer relative injury time on average. The IQR for those who survive is also wider as well as the whiskers. However, there are still values of longer injury times for those who do survive, however they appear less frequently. This is slightly counterintuitive as we would expect those who took longer to get to hospital or those who have been suffering longer, would be at a higher risk of *death*. However, it's possible that these people have less serious injuries, and have less risk of dying, and are then rushed to hospital with less urgency, having a longer injury time.
 
 
 
@@ -244,7 +265,7 @@ plothist_factor("log_injurytime", "death", X, "Death", color_2, color_3, density
 
 
 
-Figure \ref{fig:sbpdeath} showing sbp (Systolic Blood Pressure) against death, shows that those who survive (O), have distribution lightly to the left of that of the those who do not survive. This could be logical as those who survive have a higher blood pressure, initially, then those who eventually do not.
+Figure \ref{fig:sbpdeath} showing *sbp* (systolic blood pressure) against *death*, shows that those who survive (O), have distribution slightly to the right of that of the those who do not survive. This could be logical as those who survive have a higher blood pressure after the accident  then those who eventually do not, because their bodies are less weakened by the trauma.
 
 
 
@@ -252,8 +273,7 @@ Figure \ref{fig:sbpdeath} showing sbp (Systolic Blood Pressure) against death, s
 plothist_factor("sbp", "death", X, "Death", color_2, color_3, density_plot = FALSE)
 ```
 
-Figure \ref{fig:loginjurytimedeath} compares *log* Respiratory rate (rr) with those who do not survive (1) have a slightly higher mean those who survive (1). This seems to lead us to believe, that those who do not survive, in some cases more often have a higher than average respiratory rate. 
-
+Figure \ref{fig:loginjurytimedeath} compares *log respiratory rate* (rr) with those who do not survive (1) have a slightly higher mean than those who survive (1). This seems to lead us to believe, that those who do not survive, more often have a higher than an average respiratory rate. 
 
 
 
@@ -261,7 +281,8 @@ Figure \ref{fig:loginjurytimedeath} compares *log* Respiratory rate (rr) with th
 plothist_factor("log_rr", "death", X, "Death", color_2, color_3, density_plot = FALSE)
 ```
 
-Figure \ref{fig:hrdeath}, similar to *log* Respiratory Rate, the distribution and median of *log* Heart rate for those who do not survive is slightly higher than who survive.
+
+Figure \ref{fig:hrdeath}, similar to *log respiratory rate*, the distribution and median of *log heart rate* for those who do not survive (1) is slightly higher than who survive (0).
 
 
 
@@ -270,7 +291,7 @@ plothist_factor("hr", "death", X, "Death", color_2, color_3, density_plot = FALS
 ```
 
 
-Figure \ref{fig:logccdeath}, also resembling hr and rr, cc (Central Capillary Refill Time in seconds) has a distribution further to the right, although more extreme than hr and rr, which could show that cc increases like hr and rr on average for people who will not survive. We also remain to see a limited number of of observations to the the extreme right, which could be outliers. 
+Figure \ref{fig:logccdeath}, also resembling *log heart rate (hr)* and *log respiratory rate (rr)*, *log central capillary (cc)* (central capillary refill time in seconds) has a distribution further to the right, even more extreme than *hr* and *rr*, which could show that *cc* increases like *hr* and *rr* on average for people who will not survive. We also remain to see a limited number of observations to the the extreme right, which could be outliers. 
 
 
 
@@ -280,9 +301,14 @@ plothist_factor("log_cc", "death", X, "Death", color_2, color_3, density_plot = 
 ```
 
 
-\newpage
+<<<<<<< HEAD
 
-Figure \ref{fig:logndaysicudeath}, shows that days in the ICU (ndaysicu), has a very similar distribution with an identical median, likely due to the fact that most people who suffer from trauma injuries only spend a very limited relative amount of time in ICU. We see that, for those who survive (0), the 75% quartile is slightly larger, and when reviewing the histogram, more observations are on the further right end of the spectrum (more relative days in hospital). This possibly indicates to us that those who are more likely to survive are kept in the ICU for longer to heal some cases.
+=======
+\newpage
+>>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
+
+
+Figure \ref{fig:logndaysicudeath} shows that days in the ICU (*ndaysicu*), has a very similar distribution with an identical median, likely due to the fact that most people who suffer from trauma injuries only spend a very limited relative amount of time in the ICU. We see that, for those who survive (0), the 75% quartile is slightly larger, and when reviewing the histogram, more observations are on the further right end of the spectrum (more relative days in hospital). This possibly indicates to us that those who are more likely to survive are kept in the ICU for longer to heal in some cases.
 
 
 
@@ -294,7 +320,7 @@ plothist_factor("log_ndaysicu", "death", X, "Death", color_2, color_3, density_p
 
 
 
-Figure \ref{fig:logncelldeath} shows the *log* value of  red blood cells transfused (ncell) accounting for death. Those who do not survive (1), have a broader distribution with the 75% quartile being larger, possibly indicating that for those who will not surive, more blood cells are transfused for more grave injuries in some cases.  
+Figure \ref{fig:logncelldeath} shows the *log* value of  red blood cells transfused (*ncell*) accounting for *death*. Those who do not survive (1), have a broader distribution with the 75% quartile being larger, possibly indicating that for those who will not survive, more blood cells are transfused for more grave injuries that are less survivable.  
 
 
 
@@ -302,6 +328,34 @@ Figure \ref{fig:logncelldeath} shows the *log* value of  red blood cells transfu
 plothist_factor("log_ncell", "death", X, "Death", color_2, color_3, density_plot = FALSE)
 ```
 
+<<<<<<< HEAD
+
+
+Finally, the scatter plots in Figure 18 do not show any significant relationships between the variables, while accounting for *death*. There does not seem to be any recognizable visual relationship between any of the variables that is outstanding. 
+
+
+
+
+![Scatter plot of all quantitiative variables](figure_output/pairs_death.png)
+
+
+
+The PCP plot in Figure 19, generally matches with our observations about the scatter plots. Those who survive and do not, follow the same visual pattern. For *log_cc*, *hr*, and *log_ndaysicu*, those who survive appear to have values that are more broadly dispersed, but this could be due to the fact those who survive represent a majority of the sample size, making the visual depiction incorrect. Although, comparing with the histograms and box plots, *log_cc*, *hr*, and *log_ndaysicu* do appear to have more dispersed distributions and wider IQRs. 
+
+
+
+
+![PCP plot of all quantitiative variables](figure_output/pcp_death.png)
+
+
+
+The Andrews' plot in Figure 20, matches our previous analysis in Figure 23 and 24, that variables share similar distributions and relationships when accounting for *death*. The Andrew Plot does not show any dramatic differences in the depction between the two groups.
+
+
+EXACT REPEAT AS BELOW!
+
+
+=======
 \newpage
 
 
@@ -312,6 +366,7 @@ Finally, the scatter plot in Figure 18 we cannot see any significant relationshi
 
 \newpage
 
+
 The PCP plot in Figure 19, generally matches with our observations about the scatterplot, that comparing those who survive and do not, follow the same visual pattern. For *log_cc*, *hr*, and *log_ndaysicu*, those who survive appear to have values that are more broadly dispersed, but this could be due to the fact those who survive represent a majority of the sample size. Although, comparing with the histograms and box plots, *log_cc*, *hr*, and *log_ndaysicu* do appear to have more dispersed distributions and wider IQRs. 
 
 
@@ -321,19 +376,35 @@ The PCP plot in Figure 19, generally matches with our observations about the sca
 
 \newpage
 
-The Andrews' plot in Figure 20, matches our previous analysis in Figure 18 and 19, that variables share similar distributions and relationships when accounting for Death, as the Andrew Plot does not show any dramatic differences between the two groups.
+The Andrews' plot in Figure 20, matches our previous analysis in Figure 18 and 19, that variables share similar distributions and relationships when accounting for *death*, as the Andrew Plot does not show any dramatic differences between the two groups.
 
 
+>>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
 
 ![Andrews' plot of all quantitiative variables](figure_output/andrew_death.png)
 
 
 
-In conclusion, we see that when accounting for difference categorical variables and Death, the distributions for our quantitative variables do not change significantly. We can see some minor changes in distributions and means.  COMPLETE LATER.
+<<<<<<< HEAD
 
 
+In conclusion, we see that when accounting for different categorical variables and *death*, the relationships between our quantitative variables do not change significantly overall, looking at the scatter plots and other visuals. There doesn't appear to be any collinearity, whether *death* is accounted for or not. We can see some minor changes in distributions and means when dividing the distribution for those who do not and do survive, however there is nothing too drastic. The IQRs for all our variables overlap, for example. The medians are even the same for *log_ncell* and *log_ndaysicu*. The variable with the largest difference, appear to be , *log_cc* where the median for those survive is at the 25% quartile of those who do not survive. For *sbp*, the median for those who do not survive is similar to the 25% quartile of those who survive.   
 
-In the next section we will make some inference using sample estimators of mean, covariance, and correlation.
+
+In the next section we will make inferences using sample estimators of mean, covariance, and correlation.
+
+
+=======
+
+
+In conclusion, we see that when accounting for different categorical variables and *death*, the relationships between our quantitative variables do not change significantly overall, looking at the scatter plots and other visuals. There doesn't appear to be any collinearity, whether *death* is accounted for or not. We can see some minor changes in distributions and means when dividing the distribution for those who do not and do survive, however there is nothing too drastic. The IQRs for all our variables overlap, for example. The medians are even the same for *log_ncell* and *log_ndaysicu*. The variable with the largest difference, appear to be , *log_cc* where the median for those survive is at the 25% quartile of those who do not survive. For *sbp*, the median for those who do not survive is similar to the 25% quartile of those who survive.   
+
+
+In the next section we will make inferences using sample estimators of mean, covariance, and correlation.
+
+REPEATED FROM ABOVE.
+
+>>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
 
 
 
@@ -343,9 +414,17 @@ In the next section we will make some inference using sample estimators of mean,
 
 ### Sample mean
 
+<<<<<<< HEAD
 
-Below is the sample mean vector for all the variables in our analysis, without controlling for death.
 
+All population
+
+
+=======
+
+Below is the sample mean vector for all the variables in our analysis, without controlling for *death*.
+
+>>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
 
 ```{r, echo=FALSE}
 X <- X[,-c(3,6,7,9,10)]
@@ -361,7 +440,15 @@ knitr::kable(t(m),
 
 
 
-This table shows the mean while setting death to 1, or for those who do not survive.
+<<<<<<< HEAD
+SPACE
+=======
+
+
+This table shows the mean while setting *death* to 1, or for those who do not survive.
+
+
+>>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
 
 
 
@@ -377,8 +464,7 @@ knitr::kable(t(m_death),
 
 
 
-Now provided is the Sample mean for the variables when the patient survives, or when death = 0.
-
+Now provided is the sample mean for the variables when the patient survives, or when *death* = 0.
 
 
 
@@ -394,7 +480,21 @@ knitr::kable(t(m_life),
 
 
 
-Although touched upon above, comparing the means when controlling for *death*, overall, we do see some differences in the variables. The means of those who survive are more similar to the overall sample mean as those who survive represent more of the sample population.  In terms of difference between means we see that age is slightly higher for those who do not survive, which is logical, as those who are younger will likely be of better overall health and survive a trauma. *Sbp*, *hr*, *log_rr*, *log_cc* and *log_ncell* are all higher for those who do not survive possibly showing that those who have a higher Systolic Blood Pressure, Heart Rate, Respiratory Rate, continue...
+<<<<<<< HEAD
+
+
+Although touched upon above in our analysis of the box plots and histograms, comparing the means when controlling for *death*, overall, we do see some differences in the variables. The means of those who survive are more similar to the overall sample mean as those who survive represent more of the sample population.  In terms of difference between means we see that *age* is slightly higher for those who do not survive, which is logical, as those who are younger will likely be of better overall health and survive a trauma.*Hr*, *log_rr*, *log_cc* and *log_ncell* are all higher, and *sbp* lower,  for those who do not survive which could be various responses related to the bodies response to more serious injury and it's medical treatment (more blood given, for example). *Log_injurytime* and *log_ndaysicu* are higher for those who survive, possibly as those who have less serious injuries have a higher likelihood to survive and take longer to get to hospital. For similar reasons, *log_ndaysicu* could be longer for those who survive as those with more serious injuries were not able to survive for long, but those who could survive stayed longer in the ICU.
+
+
+
+=======
+
+Although touched upon above in our analysis of the box plots and histograms, comparing the means when controlling for *death*, overall, we do see some differences in the variables. The means of those who survive are more similar to the overall sample mean as those who survive represent more of the sample population.  In terms of difference between means we see that *age* is slightly higher for those who do not survive, which is logical, as those who are younger will likely be of better overall health and survive a trauma.*Hr*, *log_rr*, *log_cc* and *log_ncell* are all higher, and *sbp* lower,  for those who do not survive which could be various responses related to the bodies response to more serious injury and it's medical treatment (more blood given, for example). *Log_injurytime* and *log_ndaysicu* are higher for those who survive, possibly as those who have less serious injuries have a higher likelihood to survive and take longer to get to hospital. For similar reasons, *log_ndaysicu* could be longer for those who survive as those with more serious injuries were not able to survive for long, but those who could survive stayed longer in the ICU.
+
+REPEAT OF ABOVE.
+
+
+>>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
 
 
 
@@ -405,7 +505,17 @@ Although touched upon above, comparing the means when controlling for *death*, o
 ### Sample covariance
 
 
-Below are the sample covariance matrices for the general sample, and then for those who do not survive (1) and those who survive (0). The diagonal is are the variances of the variables and other values outside of the diagonals identify the covariances for the corresponding variables on the in the row and column. First, below, is the Sample covariance matrix for the entire data set without controlling for death.
+<<<<<<< HEAD
+
+Below are the sample covariance matrices for the general sample, and then for those who do not survive (1) and those who survive (0). The diagonal are the variances of the variables and the other values outside of the diagonals identify the covariances for the corresponding variables of the intersection of the respective row and column.
+  
+=======
+
+Below are the sample covariance matrices for the general sample, and then for those who do not survive (1) and those who survive (0). The diagonal are the variances of the variables and the other values outside of the diagonals identify the covariances for the corresponding variables of the intersection of the respective row and column.
+
+REPEAT OF ABOVE.
+
+>>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
   
 
 ```{r, echo=FALSE}
@@ -417,7 +527,13 @@ knitr::kable(S,
 ```
 
 
-Second, here, we provide the  Sample covariance matrix for patients who did not survive (*death* = 1).
+<<<<<<< HEAD
+SPACE
+=======
+
+Second, here, we provide the sample covariance matrix for patients who did not survive (*death* = 1).
+
+>>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
 
 
 
@@ -425,14 +541,29 @@ Second, here, we provide the  Sample covariance matrix for patients who did not 
 S_death <- cov(X_death)
 
 knitr::kable(S_death,
+<<<<<<< HEAD
+      caption = "Sample covariance matrix death patients",
+=======
       caption = "Sample covariance matrix: Did not survive",
+>>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
       align="c")
 ```
 
 
+<<<<<<< HEAD
+
+The following below is the  sample covariance matrix for patients who survived (*death* = 0).
+
+
+=======
 \newpage
 
-The following below is the  Sample covariance matrix for patients who survived (*death* = 0).
+The following below is the  sample covariance matrix for patients who survived (*death* = 0).
+
+
+>>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
+
+
 
 
 
@@ -440,22 +571,39 @@ The following below is the  Sample covariance matrix for patients who survived (
 S_life <- cov(X_life)
 
 knitr::kable(S_life,
+<<<<<<< HEAD
+      caption = "Sample covariance matrix survival patients",
+=======
       caption = "Sample covariance matrix: Survive",
+>>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
       align="c")
 ```
 
 
 
-We do not see in many of the categories, large ...
+<<<<<<< HEAD
 
 
-Ohter additional measure of dispersion is called the *Generalized variance*, which is defined as the determinant of the sample convariance. In the case of the three previous covaraince table, the generalized variance is given by the following table:
+
+Comparing covariance matrices is a bit challenging as the magnitudes are not standarised, hence we reserve much our analysis of the covariances between variables to the correlation matrices below, where the values are standarised between -1 and 1. We can analyse the difference in the  individual variances of the variables when accounting for *death* here as this information is lost in the correlation matrices. To do this we use another additional measure of dispersion is called the *generalized variance*, which is defined as the determinant of the sample covariance. In the case of the three previous covariance table, the generalized variance is given by the following table. The generalized variance appears to be highest for the entire population, which is logical as it has the highest sample size and contains both groups for *death*. Surprisingly, the variance for those who do not survive (1) is the significantly higher than for those who survive (0), despite having a drastically smaller sample size. This leads us to believe that data for those who do not survive is much more widely spread, possibly demonstrating that their indicators differ, many being related to health, are further from the median, or standard, healthy levels, indicating less likelihood to survive. In fact, we see a higher variance only in those who survive for the only two indicators that are not related to biological measurements in *log_ndaysicu* 
+and *log_injurytime* (although very marginally in this case). As noted previously, *log_ndaysicu* could vary more for those who survive as those who do not survive may have more serious injuries where they are not able to make it to ICU treatment. It's possible that those who enter the ICU they are more likely to survive after entering despite how long they spend there.
+
+
+
+=======
+
+
+
+Comparing covariance matrices is a bit challenging as the magnitudes are not standarised, hence we reserve much our analysis of the covariances between variables to the correlation matrices below, where the values are standarised between -1 and 1. We can analyse the difference in the  individual variances of the variables when accounting for *death* here as this information is lost in the correlation matrices. To do this we use another additional measure of dispersion is called the *generalized variance*, which is defined as the determinant of the sample covariance. In the case of the three previous covariance table, the generalized variance is given by the following table. The generalized variance appears to be highest for the entire population, which is logical as it has the highest sample size and contains both groups for *death*. Surprisingly, the variance for those who do not survive (1) is the significantly higher than for those who survive (0), despite having a drastically smaller sample size. This leads us to believe that data for those who do not survive is much more widely spread, possibly demonstrating that their indicators differ, many being related to health, are further from the median, or standard, healthy levels, indicating less likelihood to survive. In fact, we see a higher variance only in those who survive for the only two indicators that are not related to biological measurements in *log_ndaysicu* 
+and *log_injurytime* (although very marginally in this case). As noted previously, *log_ndaysicu* could vary more for those who survive as those who do not survive may have more serious injuries where they are not able to make it to ICU treatment. It's possible that those who enter the ICU they are more likely to survive after entering despite how long they spend there.
+
+
 
 
 ```{r, echo=FALSE}
 determ = c(det(S),det(S_death),det(S_life))
 gener_var <- data.frame(t(determ))
-colnames(gener_var) <- c("All population", "Death", "Survive")
+colnames(gener_var) <- c("All population", "Did not survive", "Survive")
 
 
 knitr::kable(gener_var,
@@ -463,12 +611,16 @@ knitr::kable(gener_var,
       align="c")
 ```
 
+>>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
 
 
 \newpage
 
 ### Sample correlation
 
+<<<<<<< HEAD
+Below are the sample correlation matrices for the general sample, and then for those who do not survive (1) and those who survive (0). The values outside of the diagonals identify the correlations for the corresponding variables on the in the row and column.
+=======
 
 
 Below are the sample correlation matrices and the correlation plots for the general sample, and then for those who do not survive (1) and those who survive (0). The values outside of the diagonals identify the correlations for the corresponding variables on the in the row and column. 
@@ -476,6 +628,7 @@ Below are the sample correlation matrices and the correlation plots for the gene
 Below is the sample correlation matrix for the entire sample, without considering *death*.
 
 
+>>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
 
 
 ```{r, echo=FALSE}
@@ -487,9 +640,13 @@ knitr::kable(R,
 ```
 
 
+<<<<<<< HEAD
+SPACE..
+=======
 
 Figure \ref{fig:corr}, shown here is the correlation plot for the entire sample. 
 
+>>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
 
 
 ```{r corr, fig.cap = "Sample Correlation Crash2 Dataset\\label{fig:corr}", echo=FALSE}
@@ -497,10 +654,19 @@ corrplot(R)
 ```
 
 
-Reviewing Figure \ref{fig:corr} and the general sample covariance matrix we see that most values are fairly close to zero meaning most variables do not have a linear correlation.This is expected as our scatter plots did not visually reveal any linear relationships. The maximum absolute value we see is the correlation between log_ncell and log_ndaysicu at 0.3113. Other correlation coefficients that exceed the absolute value of 0.1 are log_ndaysicu and log_injurytime, sbp and log_injurytime, log_rr and hr as well as hr and sbp at -0.2225.  According to Ratner (2009), correlation coefficients with values below 0.3 are considered weak or minimal relationships. All of our correlation coefficients are within this category. Log_ncell and log_ndaysicu are the only ones to reach the threshold of a "moderate relationship". The fact that log_ncell and log_ndaysicu have a limited moderate relationship could be possibly be due to that fact those who stay in hospital for longer need more blood and those who have serious injuries need more blood and need to stay in hospital more often. We very small positive correlations between most variables but appears that Blood Pressue (sbp) has minor negative correlations with most variables, particularly with Heart Rate (hr), Central Capillary Refill Time (log_cc) and even more minorly, Number of Blood Cells transfused (log_ncell)  (SPOKEN ABOUT LATER). 
+<<<<<<< HEAD
+
+Reviewing Figure \ref{fig:corr} for the general sample covariance matrix we see that most values are fairly close to zero meaning most variables do not have a linear correlation. The maximum absolute value we see is the correlation between *log_ncell* and *log_ndaysicu* at 0.3113. Other correlation coefficients that exceed the absolute value of 0.1 are *log_ndaysicu* and *log_injurytime*, *sbp* and *log_injurytime*, *log_rr* and *hr* as well as *hr* and *sbp* at -0.2225. This is expected as our scatter plots did not visually reveal any linear relationships. According to Ratner (2009), correlation coefficients with values below 0.3 are considered weak or minimal relationships. All of our correlation coefficients are within this category. *Log_ncell* and *log_ndaysicu* are the only ones to reach the threshold of a "moderate relationship". The fact that *log_ncell* and *log_ndaysicu* have a limited moderate relationship could be possibly be due to that fact those who stay in hospital for longer need more blood and those who have serious injuries need more blood and need to stay in hospital more often. We very small positive correlations between most variables but appears that *sbp* has minor negative correlations with most variables as well as *hr*, although these correlations remain minor.
+
+
+
+=======
+Reviewing Figure \ref{fig:corr} for the general sample covariance matrix we see that most values are fairly close to zero meaning most variables do not have a linear correlation. The maximum absolute value we see is the correlation between *log_ncell* and *log_ndaysicu* at 0.3113. Other correlation coefficients that exceed the absolute value of 0.1 are *log_ndaysicu* and *log_injurytime*, *sbp* and *log_injurytime*, *log_rr* and *hr* as well as *hr* and *sbp* at -0.2225. This is expected as our scatter plots did not visually reveal any linear relationships. According to Ratner (2009), correlation coefficients with values below 0.3 are considered weak or minimal relationships. All of our correlation coefficients are within this category. *Log_ncell* and *log_ndaysicu* are the only ones to reach the threshold of a "moderate relationship". The fact that *log_ncell* and *log_ndaysicu* have a limited moderate relationship could be possibly be due to that fact those who stay in hospital for longer need more blood and those who have serious injuries need more blood and need to stay in hospital more often. We very small positive correlations between most variables but appears that *sbp* has minor negative correlations with most variables as well as *hr*, although these correlations remain minor.
 
 
 Below is the sample correlation matrix for those who did not survive (*death*=1)
+
+>>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
 
 
 ```{r, echo=FALSE}
@@ -523,7 +689,11 @@ knitr::kable(R_life,
       align="c")
 ```
 
-Heatmap \ref{fig:heatmap} ... and Figure \ref{fig:corrgroup}, as provided are correlation plots while controlling for death
+
+
+Figure \ref{fig:corrgroup} are the correlation matrices while accounting for *death*, as well as, the Figure 22 which is a heatmap for the differences in the correlations.
+
+
 
 ```{r heatmap, fig.cap = "Heatmap difference between correlation atrices\\label{fig:heatmap}", echo=FALSE}
 
@@ -539,20 +709,17 @@ corrplot(R_life, title="Survived")
 ```
 
 
-We do not see any changes in relationships for those who do not survive and people that do. We do see that some correlations seem to get more minor for those who survive but this is likely due to the larger sample size of those who survive as their variances will be less. Some variances do increase for those who survive such as *log_ndaysicu* and *log_ncell*, almost doubles, and rises to a level of correlation at 0.3493 that is consider moderate (Ratner, 2009). This may be because, for those that do not survive, they receive a lot of blood to attempt to save their lives, but do not survive long enough to stay in the ICU due to the severity of their trauma. This therefore would limit the covariance. For those who survive, they possibly could remain in hospital longer therefore receive more blood over those days, incresing the covariance.
+
+We do not see any major changes in relationships for those who do not survive and people that do. Some variances do increase for those who survive such as *log_ndaysicu* and *log_ncell*,  which almost doubles, and rises to a level of correlation at 0.3493 -  considered moderate (Ratner, 2009). This may be because, for those that do not survive, they receive a lot of blood to attempt to save their lives, but do not survive long enough to stay in the ICU due to the severity of their trauma. This therefore would limit the covariance. For those who survive, they possibly could remain in hospital longer therefore, receiving more blood over those days, increasing the covariance.
 
 
+In conclusion, there is not much colinearity in these variables, while controlling for *death* or when not. This would mean, for example, that there is good potential for regression for the overall sample. However, though and more salient for our analysis at hand. the two categories for *death* are not easily separated, which means that drawing conclusions about the two separate groups, and comarping them, would be difficult and any statistical analysis would likely not be very accurate in drawing conclusions about the groups.
 
-TO INSERT: In conclusion, that since there is not much colinearity in these variables there is good potential for regression, however, the issue is that the two categories for death are not easily seperated, which means the analysis would likely not be accurate. 
 
 ### Outliers
 
 
-INSET SOMEHWERE: We don't use shrinkage analysis because we have many more observations ($n = 9497$) than variables. 
-
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
+Through out our analysis, we did not have much reason to believe that outliers strongly affected our variables, we recognized some possibility in *cc* as well as *injurytime*.  To compute the robust means we use the Minimum covariance determinant (MCD) estimators for the robust mean as we have many more observations ($n = 9497$) than quantitative variables ($p=8$) (it also the reason why we did not perform shrinkage analysis). However, despite making many of variable's distribution appear close to a Gaussian distribution our analysis with the MCD may be slightly flawed due the fact that some of our variables are not Gaussian, even after transformation. Comparing the robust means to the regular we don't see any dramatic differences, confirming our analysis. For *cc* and *injurytime* we don't see much difference in fact, although these distributions are not Gaussian possibly diluting our ability to analyze. The largest differences are between *log_ndaysicu* and *log_ncell* although they are less than 0.05 of relative change (on the log transformed variables). Overall, it appears that outliers are not very influential for any of variables.
 
 
 ```{r, echo=FALSE}
@@ -563,11 +730,19 @@ knitr::kable(t(m_MCD),
       row.names = FALSE,
       caption = "Sample robust mean",
       align="c")
+
+knitr::kable(t(m),
+      row.names = FALSE,
+      caption = "Sample mean",
+      align="c")
+
 ```
 
-Comparison of the eigenvalues of the covariance matrix for sample and robust is given by figure \ref{fig:robust} ...
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+Comparison of the eigenvalues of the covariance matrix for sample and robust (MCD) means are given by Figure \ref{fig:robust}. This plot confirms our suspicions from above that above that outliers do not effect the variables strongly as the eigenvalues for the two estmiates do not differ strongly.
+
+
 
 ```{r robust, fig.cap = "Comparison eigenvalues sample and robust covariance\\label{fig:robust}", echo=FALSE}
 S_MCD <- MCD_est$cov
@@ -600,8 +775,9 @@ legend(5,600,
 ```
 
 
-The eigenvalues are used 
 
+
+Analyzing the correlation plots for the sample and MCD estimator, we have further evidence that outliers are not important in our analysis, as the correlations hardly change. Some of the correlations appear stronger but this is only marginally, and doesn't provide sufficient support to conclude that outliers would be influential in our analysis using any of our variables. We therefore end our examination of outliers here as further investigation will likely not be helpful as outliers do not seem to be important. 
 
 
 ```{r corrout, fig.cap = "Correlation all population and MCD correlation\\label{fig:corrout}", echo=FALSE}
@@ -609,10 +785,6 @@ par(mfrow=c(1,2))
 corrplot(R)
 corrplot(R_MCD)
 ```
-
-
-figure \ref{fig:corrout} Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
 
 \newpage
 
