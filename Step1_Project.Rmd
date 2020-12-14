@@ -227,7 +227,8 @@ plothist_factor("hr", "death", X, "Death", color_2, color_3, density_plot = FALS
 
 \newpage
 
-Figure \ref{fig:logccdeath}, also resembling *log heart rate (hr)* and *log respiratory rate (rr)*, *log central capillary (cc)* (central capillary refill time in seconds) has a distribution further to the right, even more extreme than *hr* and *rr*, which could show that *cc* increases like *hr* and *rr* on average for people who will not survive. We also remain to see a limited number of observations to the extreme right, which could be outliers. 
+Figure \ref{fig:logccdeath}, also resembling *log heart rate (hr)* and *log respiratory rate (rr)*, *log central capillary (cc)* (central capillary refill time in seconds) has a distribution further to the right, even more extreme than *hr* and *rr*, which could show that *cc* increases like *hr* and *rr* on average for people who will not survive. We also remain to see a limited number of observations to the extreme right, which could be outliers.
+
 ```{r logccdeath, fig.cap = "Distribution of log transformation of cc (Central capillary) in terms of death\\label{fig:logccdeath}", echo=FALSE}
 plothist_factor("log_cc", "death", X, "Death", color_2, color_3, density_plot = FALSE)
 ```
@@ -602,14 +603,13 @@ We must note that the shape of this plot alerts us that our data may not be opti
 fviz_eig(X_pcs,ncp=17,addlabels=T,barfill=color_1,barcolor=`color_4`)
 ```
 
-The matrix scatterplot reflects the relations in the first four principal components. Here too, we do not appreciate a clear distinction between the groups (death and survival). Nor do we see linear relationships between the populations or a specific group. This provides further justification for our initial decision of considering only the first two PCs, since the subsequent two provide no further insight into possible clusters.
+The matrix scatterplot in figure 31 reflects the relations in the first four principal components. Here too, we do not appreciate a clear distinction between the groups (death and survival). Nor do we see linear relationships between the populations or a specific group. This provides further justification for our initial decision of considering only the first two PCs, since the subsequent two provide no further insight into possible clusters.
 
 ![PC Scores and PC loading all population](figure_output/pca_4pc2.png)
 
-Finally Figure \ref{fig:corrpc} explains the correlation between the variables and the principal components. This information is very similar to what we deduced graphically from the PC loadings plots. In the case of the first principal components, in magnitude, the biometrical measures and medical attention variables are more related to this component.  In the case of the second principal component, the individual factors such as age and injury time acquire more relevance in the analysis. 
+Finally, figure \ref{fig:corrpc} explains the correlation between the variables and the principal components. This information is very similar to what we deduced graphically from the PC loadings plots. In the case of the first principal components, in magnitude, the biometrical measures and medical attention variables are more related to this component.  In the case of the second principal component, the individual factors such as age and injury time acquire more relevance in the analysis. 
 
-We see that for the third and fourth PC's, age and log_rr represent the most prominent weights. In the case of PC4, the positive correlation between age and death becomes clear with the right skewed distribution of the orange points in the matrix scatterplot.
-
+We see that for the third and fourth PC's, *age* and *log_rr* represent the most prominent weights. In the case of PC4, the positive correlation between age and death becomes clear with the right skewed distribution of the orange points in the matrix scatterplot in figure 31.
 
 ```{r corrpc, fig.cap = "Correlation between dataset and all PC\\label{fig:corrpc}", echo=FALSE}
 corrplot(cor(X,X_pcs$x),is.corr=T)
@@ -727,7 +727,7 @@ text(X_pcs_surv$rotation[,1:2],labels=colnames(X_surv),pos=1,col=color_4,cex=0.7
 draw.circle(0,0,1,border=color_4,lwd=1)
 ```
 
-For Survival patients, right panel of figure \ref{fig:l3pcgrp} , we notice slightly different correlation patterns. For example, *log_ndaysicu* and *log_ncell* are positively correlated and significant for both PCs. For patients who survive, the duration and intensity of treatment are positively correlated. Meanwhile, for patients who do not survive, we see a correlation between the duration of treatment and the time of injury, independent of the intensity of treatment. For both groups, the intensity of treatment and time of injury are not correlated. 
+For Survival patients, right panel of figure \ref{fig:l3pcgrp}, we notice slightly different correlation patterns. For example, *log_ndaysicu* and *log_ncell* are positively correlated and significant for both PCs. For patients who survive, the duration and intensity of treatment are positively correlated. Meanwhile, for patients who do not survive, we see a correlation between the duration of treatment and the time of injury, independent of the intensity of treatment. For both groups, the intensity of treatment and time of injury are not correlated. 
 
 A variable that we would benefit from here is a measure of the severity of the trauma, which would provide a more nuanced understanding of these relationships. It is likely that a majority of those who survive suffered less intense wounds than those who died. This would explain why duration and intensity of treatment are correlated for survival patients, since this would most likely be indicative of progressively severe wounds. Meanwhile, for patients who do not survive, duration and intensity of treatment are not correlated, which may be because these patients generally suffered the most severe wounds and had low chances of survival. Thus, the speed at which they were able to begin treatment only bought them time, regardless of the treatment. If we had more information on the type and severity of the wounds, we would be able to test this hypothesis.
 
@@ -735,12 +735,11 @@ A variable that we would benefit from here is a measure of the severity of the t
 
 We have our PC Score plots with the observations mapped in figure 37. This is somewhat redundant and confirms our observations that there are no clear clusters and reiterates the correlations we discussed previously.
 
-Finally, Figures \ref{fig:pcaeigvgr1} and  \ref{fig:pcaeigvgr2} provide us with the variance plots for the eigenvalues of the two groups. Similarly to the full population, we see that we have less than ideal reorganizations of the data using PCA on these two groups. The shape of the curves is almost linear, decreasing at a near-constant rate. This is not an ideal distribution of variance across principal components, where we would like a greater concentration at the top of the tail. We may want to consider alternative approaches to dimensionality reduction for this data.
+Finally, figures \ref{fig:pcaeigvgr1} and  \ref{fig:pcaeigvgr2} provide us with the variance plots for the eigenvalues of the two groups. Similarly to the full population, we see that we have less than ideal reorganizations of the data using PCA on these two groups. The shape of the curves is almost linear, decreasing at a near-constant rate. This is not an ideal distribution of variance across principal components, where we would like a greater concentration at the top of the tail. We may want to consider alternative approaches to dimensionality reduction for this data.
 
 ```{r pcaeigvgr1, fig.cap = "Eigenvalues of the sample correlation matrix for death patients\\label{fig:pcaeigvgr1}", echo=FALSE}
 fviz_eig(X_pcs_death,ncp=8,addlabels=T,barfill=color_1,barcolor=`color_4`)
 ```
-
 
 ```{r pcaeigvgr2, fig.cap = "Eigenvalues of the sample correlation matrix for survival patients\\label{fig:pcaeigvgr2}", echo=FALSE}
 fviz_eig(X_pcs_surv,ncp=8,addlabels=T,barfill=color_1,barcolor=`color_4`)
