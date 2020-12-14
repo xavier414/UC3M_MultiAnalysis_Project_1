@@ -1,5 +1,5 @@
 ---
-title: "Step1 Team Project Multivariate Analysis"
+title: "Step 1 Team Project Multivariate Analysis"
 author: "Adrian White, Cesar Conejo, Xavier Bryant"
 date: "12/6/2020"
 output: pdf_document
