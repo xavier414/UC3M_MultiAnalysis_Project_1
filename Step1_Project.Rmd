@@ -98,27 +98,18 @@ knitr::kable(summary.methods)
 
 A review of the structure of the dataset is the following:
 
-
-
 ```{r echo=FALSE}
 str(X[,-c(12:16)])
 ```
 
 \newpage
 
-
-
 A summary of the values in the data set are:
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
 ```{r echo=FALSE}
 summary(X[,-c(12:16)])
 ```
-
 
 
 Finally, the list of different values by column is the following:
@@ -150,23 +141,12 @@ In the case of *age*, the Figure \ref{fig:age} reflects how this variable appear
 plothist(col_name = "age", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
 ```
 
-<<<<<<< HEAD
 
 The Figure \ref{fig:injurytime} below shows the distribution of the variable Injury  (*injurytime*) We can see how this variable is highly skewed to the left with almost all values falling below ten minutes since the injury was experienced. This is likely due to the fact, that in cases of serious injury, victims are brought to the hospital quite quickly as is the case for this data set on trauma. We apply a *log* transformation to this variable `log_injurytime = log(injurytime + 1)`, similarly to many other variables we have, because of the weight of the variables to the left of the distribution, in order to make a more normalized distribution.After the *log* transformation, we can see that two observations remain quite distinct and far to the right, with a value of four. They appear as potential outliers to the distribution, as they have almost 4 times the median value.
-
-=======
-
-The Figure \ref{fig:injurytime} below shows the distribution of the variable Injury  (*injurytime*) We can see how this variable is highly skewed to the left with almost all values falling below ten minutes since the injury was experienced. This is likely due to the fact, that in cases of serious injury, victims are brought to the hospital quite quickly as is the case for this data set on trauma. We apply a *log* transformation to this variable `log_injurytime = log(injurytime + 1)`, similarly to many other variables we have, because of the weight of the variables to the left of the distribution, in order to make a more normalized distribution.After the *log* transformation, we can see that two observations remain quite distinct and far to the right, with a value of four. They appear as potential outliers to the distribution, as they have almost 4 times the median value. REPEATED PARAGRAPH FROM ABOVE!
-
->>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
-
-
 
 ```{r injurytime, fig.cap = "Distribution of injurytime variable and log of injurytime\\label{fig:injurytime}", echo=FALSE}
 plothistlog(col_name = "injurytime", colname_log = "log_injurytime" ,df = X, breaks_colname_log = 10, ylabtext = "All participants", color_1)
 ```
-
-
 
 For *sbp* (systolic blood pressure), the distribution is a fairly centrally balanced distribution around 90 mmHg. Most observations around the mean and then a reasonably tight distribution of those who differ, making a distribution that is fairly Gaussian by nature. Furthermore, most people are fairly young in the sample and therefore would have rates, at a healthy level, that deviant less from the norm. The distribution is shown below in Figure \ref{fig:sbp}.
 
@@ -175,6 +155,8 @@ For *sbp* (systolic blood pressure), the distribution is a fairly centrally bala
 ```{r sbp, fig.cap = "Distribution of sbp (Systolic Blood Pressure)\\label{fig:sbp}", echo=FALSE}
 plothist(col_name = "sbp", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
 ```
+
+\newpage
 
 *Rr* (Respiratory Rate) appears, similar to sbp, to resemble a moderately balanced distribution around 22 respirations per minute, although *rr* is weighted more to the left. The distribution of this variable is showed in Figure \ref{fig:rr}. Taking a *log* transformation `log_rr = log(rr)`, we have the new distribution below as part of Figure \ref{fig:rr}. After the log transformation, the distribution remains quite spread out with a number fo values beyond the whiskers of the box plot. The *log* transformation in this case has not significantly changed the shape of the distribution, it does not shift much more towards a normal distribution after the *log* transformation.
 
@@ -185,17 +167,7 @@ plothist(col_name = "sbp", df = X, ylabtext = "All participants",  color_1, dens
 plothistlog(col_name = "rr", colname_log = "log_rr" ,df = X, breaks_colname_log = 8, ylabtext = "All participants", color_1)
 ```
 
-<<<<<<< HEAD
-
-In the case of *hr* (Heart rate), Figure \ref{fig:hr} has a distribution that seems fairly balanced at around 110, similar to the variables above, like *sbp* and *rr*. However, many values remain outside the whiskers and the IQR is quite tight, showing most people fall within a tight range but there is a number of people who have irregular rates on either side. NOT A CANDIDATE FOR LOG?
-
-
-=======
-\newpage
-
-In the case of *hr* (Heart rate), Figure \ref{fig:hr} has a distribution that seems fairly balanced at around 110, similar to the variables above, like *sbp* and *rr*. However, many values remain outside the whiskers and the IQR is quite tight, showing most people fall within a tight range but there is a number of people who have irregular rates on either side. REPEAT OF PARAGRAPH ABOVE!
-
->>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
+In the case of *hr* (Heart rate), Figure \ref{fig:hr} has a distribution that seems fairly balanced at around 110, similar to the variables above, like *sbp* and *rr*. However, many values remain outside the whiskers and the IQR is quite tight, showing most people fall within a tight range but there is a number of people who have irregular rates on either side.
 
 ```{r hr, fig.cap = "Distribution of hh (Heart Rate)\\label{fig:hr}", echo=FALSE}
 plothist(col_name = "hr", df = X, ylabtext = "All participants",  color_1, density_plot = FALSE)
@@ -208,6 +180,7 @@ For *cc* (Central capillary refill time in seconds) has 75% of the observations 
 ```{r cc, fig.cap = "Distribution of cc (Central capillary) and log transformation\\label{fig:cc}", echo=FALSE}
 plothistlog(col_name = "cc", colname_log = "log_cc" ,df = X, breaks_colname_log = 8, ylabtext = "All participants", color_1)
 ```
+
 
 The following Figure \ref{fig:ndaysicu} shows the distribution of the *ndaysicu:* variable. In this case, the distribution is heavily weighted to the left and right-skewed. Most patients it seems, with trauma injuries at high risk of bleeding, do not often need to remain in the hospital for long. The transformed distribution `log_ndaysicu = log(ndaysicu + 1)` is given in the below part of Figure \ref{fig:ndaysicu}. After the *log* transformation, this distribution doesn't appear much more Gaussian in nature. The values are still heavily weighted the left. No values appear outside the whiskers, however, therefore this leads us to believe that there is not much likelihood of outliers in this distribution.
 
@@ -273,7 +246,9 @@ Figure \ref{fig:sbpdeath} showing *sbp* (systolic blood pressure) against *death
 plothist_factor("sbp", "death", X, "Death", color_2, color_3, density_plot = FALSE)
 ```
 
-Figure \ref{fig:loginjurytimedeath} compares *log respiratory rate* (rr) with those who do not survive (1) have a slightly higher mean than those who survive (1). This seems to lead us to believe, that those who do not survive, more often have a higher than an average respiratory rate. 
+\newpage
+
+Figure \ref{fig:logrrdeath} compares *log respiratory rate* (rr) with those who do not survive (1) have a slightly higher mean than those who survive (1). This seems to lead us to believe, that those who do not survive, more often have a higher than an average respiratory rate. 
 
 
 
@@ -291,6 +266,8 @@ plothist_factor("hr", "death", X, "Death", color_2, color_3, density_plot = FALS
 ```
 
 
+\newpage
+
 Figure \ref{fig:logccdeath}, also resembling *log heart rate (hr)* and *log respiratory rate (rr)*, *log central capillary (cc)* (central capillary refill time in seconds) has a distribution further to the right, even more extreme than *hr* and *rr*, which could show that *cc* increases like *hr* and *rr* on average for people who will not survive. We also remain to see a limited number of observations to the the extreme right, which could be outliers. 
 
 
@@ -300,25 +277,13 @@ Figure \ref{fig:logccdeath}, also resembling *log heart rate (hr)* and *log resp
 plothist_factor("log_cc", "death", X, "Death", color_2, color_3, density_plot = FALSE)
 ```
 
-
-<<<<<<< HEAD
-
-=======
-\newpage
->>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
-
-
 Figure \ref{fig:logndaysicudeath} shows that days in the ICU (*ndaysicu*), has a very similar distribution with an identical median, likely due to the fact that most people who suffer from trauma injuries only spend a very limited relative amount of time in the ICU. We see that, for those who survive (0), the 75% quartile is slightly larger, and when reviewing the histogram, more observations are on the further right end of the spectrum (more relative days in hospital). This possibly indicates to us that those who are more likely to survive are kept in the ICU for longer to heal in some cases.
-
-
-
 
 ```{r logndaysicudeath, fig.cap = "Distribution of log ndaysicu in terms of death\\label{fig:logndaysicudeath}", echo=FALSE}
 plothist_factor("log_ndaysicu", "death", X, "Death", color_2, color_3, density_plot = FALSE)
 ```
 
-
-
+\newpage
 
 Figure \ref{fig:logncelldeath} shows the *log* value of  red blood cells transfused (*ncell*) accounting for *death*. Those who do not survive (1), have a broader distribution with the 75% quartile being larger, possibly indicating that for those who will not survive, more blood cells are transfused for more grave injuries that are less survivable.  
 
@@ -328,49 +293,18 @@ Figure \ref{fig:logncelldeath} shows the *log* value of  red blood cells transfu
 plothist_factor("log_ncell", "death", X, "Death", color_2, color_3, density_plot = FALSE)
 ```
 
-<<<<<<< HEAD
-
-
-Finally, the scatter plots in Figure 18 do not show any significant relationships between the variables, while accounting for *death*. There does not seem to be any recognizable visual relationship between any of the variables that is outstanding. 
-
-
-
-
-![Scatter plot of all quantitiative variables](figure_output/pairs_death.png)
-
-
-
-The PCP plot in Figure 19, generally matches with our observations about the scatter plots. Those who survive and do not, follow the same visual pattern. For *log_cc*, *hr*, and *log_ndaysicu*, those who survive appear to have values that are more broadly dispersed, but this could be due to the fact those who survive represent a majority of the sample size, making the visual depiction incorrect. Although, comparing with the histograms and box plots, *log_cc*, *hr*, and *log_ndaysicu* do appear to have more dispersed distributions and wider IQRs. 
-
-
-
-
-![PCP plot of all quantitiative variables](figure_output/pcp_death.png)
-
-
-
-The Andrews' plot in Figure 20, matches our previous analysis in Figure 23 and 24, that variables share similar distributions and relationships when accounting for *death*. The Andrew Plot does not show any dramatic differences in the depction between the two groups.
-
-
-EXACT REPEAT AS BELOW!
-
-
-=======
-\newpage
-
-
 Finally, the scatter plot in Figure 18 we cannot see any significant relationships but the variables, while accounting for Death. There does not seem be any visual relationship between any of the variables that are outstanding. 
 
-
-![Scatter plot of all quantitiative variables](figure_output/pairs_death.png)
+Furthermore, the PCP plot in Figure 19, generally matches with our observations about the scatter plots. Those who survive and do not, follow the same visual pattern. For *log_cc*, *hr*, and *log_ndaysicu*, those who survive appear to have values that are more broadly dispersed, but this could be due to the fact those who survive represent a majority of the sample size, making the visual depiction incorrect. Although, comparing with the histograms and box plots, *log_cc*, *hr*, and *log_ndaysicu* do appear to have more dispersed distributions and wider IQRs. 
 
 \newpage
 
 
-The PCP plot in Figure 19, generally matches with our observations about the scatterplot, that comparing those who survive and do not, follow the same visual pattern. For *log_cc*, *hr*, and *log_ndaysicu*, those who survive appear to have values that are more broadly dispersed, but this could be due to the fact those who survive represent a majority of the sample size. Although, comparing with the histograms and box plots, *log_cc*, *hr*, and *log_ndaysicu* do appear to have more dispersed distributions and wider IQRs. 
 
 
+![Scatter plot of all quantitiative variables](figure_output/pairs_death.png)
 
+\newpage
 
 ![PCP plot of all quantitiative variables](figure_output/pcp_death.png)
 
@@ -378,34 +312,15 @@ The PCP plot in Figure 19, generally matches with our observations about the sca
 
 The Andrews' plot in Figure 20, matches our previous analysis in Figure 18 and 19, that variables share similar distributions and relationships when accounting for *death*, as the Andrew Plot does not show any dramatic differences between the two groups.
 
-
->>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
-
 ![Andrews' plot of all quantitiative variables](figure_output/andrew_death.png)
 
 
 
-<<<<<<< HEAD
 
 
 In conclusion, we see that when accounting for different categorical variables and *death*, the relationships between our quantitative variables do not change significantly overall, looking at the scatter plots and other visuals. There doesn't appear to be any collinearity, whether *death* is accounted for or not. We can see some minor changes in distributions and means when dividing the distribution for those who do not and do survive, however there is nothing too drastic. The IQRs for all our variables overlap, for example. The medians are even the same for *log_ncell* and *log_ndaysicu*. The variable with the largest difference, appear to be , *log_cc* where the median for those survive is at the 25% quartile of those who do not survive. For *sbp*, the median for those who do not survive is similar to the 25% quartile of those who survive.   
 
-
 In the next section we will make inferences using sample estimators of mean, covariance, and correlation.
-
-
-=======
-
-
-In conclusion, we see that when accounting for different categorical variables and *death*, the relationships between our quantitative variables do not change significantly overall, looking at the scatter plots and other visuals. There doesn't appear to be any collinearity, whether *death* is accounted for or not. We can see some minor changes in distributions and means when dividing the distribution for those who do not and do survive, however there is nothing too drastic. The IQRs for all our variables overlap, for example. The medians are even the same for *log_ncell* and *log_ndaysicu*. The variable with the largest difference, appear to be , *log_cc* where the median for those survive is at the 25% quartile of those who do not survive. For *sbp*, the median for those who do not survive is similar to the 25% quartile of those who survive.   
-
-
-In the next section we will make inferences using sample estimators of mean, covariance, and correlation.
-
-REPEATED FROM ABOVE.
-
->>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
-
 
 
 \newpage
@@ -414,17 +329,9 @@ REPEATED FROM ABOVE.
 
 ### Sample mean
 
-<<<<<<< HEAD
-
-
 All population
 
-
-=======
-
 Below is the sample mean vector for all the variables in our analysis, without controlling for *death*.
-
->>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
 
 ```{r, echo=FALSE}
 X <- X[,-c(3,6,7,9,10)]
@@ -438,19 +345,7 @@ knitr::kable(t(m),
       align="c")
 ```
 
-
-
-<<<<<<< HEAD
-SPACE
-=======
-
-
 This table shows the mean while setting *death* to 1, or for those who do not survive.
-
-
->>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
-
-
 
 ```{r, echo=FALSE}
 X_death <- X_quan[X$death==1,]
@@ -462,11 +357,7 @@ knitr::kable(t(m_death),
       align="c")
 ```
 
-
-
 Now provided is the sample mean for the variables when the patient survives, or when *death* = 0.
-
-
 
 ```{r, echo=FALSE}
 X_life <- X_quan[X$death==0,]
@@ -480,42 +371,14 @@ knitr::kable(t(m_life),
 
 
 
-<<<<<<< HEAD
-
-
 Although touched upon above in our analysis of the box plots and histograms, comparing the means when controlling for *death*, overall, we do see some differences in the variables. The means of those who survive are more similar to the overall sample mean as those who survive represent more of the sample population.  In terms of difference between means we see that *age* is slightly higher for those who do not survive, which is logical, as those who are younger will likely be of better overall health and survive a trauma.*Hr*, *log_rr*, *log_cc* and *log_ncell* are all higher, and *sbp* lower,  for those who do not survive which could be various responses related to the bodies response to more serious injury and it's medical treatment (more blood given, for example). *Log_injurytime* and *log_ndaysicu* are higher for those who survive, possibly as those who have less serious injuries have a higher likelihood to survive and take longer to get to hospital. For similar reasons, *log_ndaysicu* could be longer for those who survive as those with more serious injuries were not able to survive for long, but those who could survive stayed longer in the ICU.
-
-
-
-=======
-
-Although touched upon above in our analysis of the box plots and histograms, comparing the means when controlling for *death*, overall, we do see some differences in the variables. The means of those who survive are more similar to the overall sample mean as those who survive represent more of the sample population.  In terms of difference between means we see that *age* is slightly higher for those who do not survive, which is logical, as those who are younger will likely be of better overall health and survive a trauma.*Hr*, *log_rr*, *log_cc* and *log_ncell* are all higher, and *sbp* lower,  for those who do not survive which could be various responses related to the bodies response to more serious injury and it's medical treatment (more blood given, for example). *Log_injurytime* and *log_ndaysicu* are higher for those who survive, possibly as those who have less serious injuries have a higher likelihood to survive and take longer to get to hospital. For similar reasons, *log_ndaysicu* could be longer for those who survive as those with more serious injuries were not able to survive for long, but those who could survive stayed longer in the ICU.
-
-REPEAT OF ABOVE.
-
-
->>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
-
-
-
-
 
 \newpage
 
 ### Sample covariance
 
-
-<<<<<<< HEAD
-
-Below are the sample covariance matrices for the general sample, and then for those who do not survive (1) and those who survive (0). The diagonal are the variances of the variables and the other values outside of the diagonals identify the covariances for the corresponding variables of the intersection of the respective row and column.
-  
-=======
-
 Below are the sample covariance matrices for the general sample, and then for those who do not survive (1) and those who survive (0). The diagonal are the variances of the variables and the other values outside of the diagonals identify the covariances for the corresponding variables of the intersection of the respective row and column.
 
-REPEAT OF ABOVE.
-
->>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
   
 
 ```{r, echo=FALSE}
@@ -527,13 +390,9 @@ knitr::kable(S,
 ```
 
 
-<<<<<<< HEAD
-SPACE
-=======
 
 Second, here, we provide the sample covariance matrix for patients who did not survive (*death* = 1).
 
->>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
 
 
 
@@ -541,63 +400,25 @@ Second, here, we provide the sample covariance matrix for patients who did not s
 S_death <- cov(X_death)
 
 knitr::kable(S_death,
-<<<<<<< HEAD
-      caption = "Sample covariance matrix death patients",
-=======
       caption = "Sample covariance matrix: Did not survive",
->>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
       align="c")
 ```
 
 
-<<<<<<< HEAD
-
-The following below is the  sample covariance matrix for patients who survived (*death* = 0).
-
-
-=======
 \newpage
 
 The following below is the  sample covariance matrix for patients who survived (*death* = 0).
-
-
->>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
-
-
-
-
 
 ```{r, echo=FALSE}
 S_life <- cov(X_life)
 
 knitr::kable(S_life,
-<<<<<<< HEAD
-      caption = "Sample covariance matrix survival patients",
-=======
       caption = "Sample covariance matrix: Survive",
->>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
       align="c")
 ```
 
-
-
-<<<<<<< HEAD
-
-
-
 Comparing covariance matrices is a bit challenging as the magnitudes are not standarised, hence we reserve much our analysis of the covariances between variables to the correlation matrices below, where the values are standarised between -1 and 1. We can analyse the difference in the  individual variances of the variables when accounting for *death* here as this information is lost in the correlation matrices. To do this we use another additional measure of dispersion is called the *generalized variance*, which is defined as the determinant of the sample covariance. In the case of the three previous covariance table, the generalized variance is given by the following table. The generalized variance appears to be highest for the entire population, which is logical as it has the highest sample size and contains both groups for *death*. Surprisingly, the variance for those who do not survive (1) is the significantly higher than for those who survive (0), despite having a drastically smaller sample size. This leads us to believe that data for those who do not survive is much more widely spread, possibly demonstrating that their indicators differ, many being related to health, are further from the median, or standard, healthy levels, indicating less likelihood to survive. In fact, we see a higher variance only in those who survive for the only two indicators that are not related to biological measurements in *log_ndaysicu* 
 and *log_injurytime* (although very marginally in this case). As noted previously, *log_ndaysicu* could vary more for those who survive as those who do not survive may have more serious injuries where they are not able to make it to ICU treatment. It's possible that those who enter the ICU they are more likely to survive after entering despite how long they spend there.
-
-
-
-=======
-
-
-
-Comparing covariance matrices is a bit challenging as the magnitudes are not standarised, hence we reserve much our analysis of the covariances between variables to the correlation matrices below, where the values are standarised between -1 and 1. We can analyse the difference in the  individual variances of the variables when accounting for *death* here as this information is lost in the correlation matrices. To do this we use another additional measure of dispersion is called the *generalized variance*, which is defined as the determinant of the sample covariance. In the case of the three previous covariance table, the generalized variance is given by the following table. The generalized variance appears to be highest for the entire population, which is logical as it has the highest sample size and contains both groups for *death*. Surprisingly, the variance for those who do not survive (1) is the significantly higher than for those who survive (0), despite having a drastically smaller sample size. This leads us to believe that data for those who do not survive is much more widely spread, possibly demonstrating that their indicators differ, many being related to health, are further from the median, or standard, healthy levels, indicating less likelihood to survive. In fact, we see a higher variance only in those who survive for the only two indicators that are not related to biological measurements in *log_ndaysicu* 
-and *log_injurytime* (although very marginally in this case). As noted previously, *log_ndaysicu* could vary more for those who survive as those who do not survive may have more serious injuries where they are not able to make it to ICU treatment. It's possible that those who enter the ICU they are more likely to survive after entering despite how long they spend there.
-
-
 
 
 ```{r, echo=FALSE}
@@ -611,24 +432,9 @@ knitr::kable(gener_var,
       align="c")
 ```
 
->>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
-
-
-\newpage
-
 ### Sample correlation
 
-<<<<<<< HEAD
 Below are the sample correlation matrices for the general sample, and then for those who do not survive (1) and those who survive (0). The values outside of the diagonals identify the correlations for the corresponding variables on the in the row and column.
-=======
-
-
-Below are the sample correlation matrices and the correlation plots for the general sample, and then for those who do not survive (1) and those who survive (0). The values outside of the diagonals identify the correlations for the corresponding variables on the in the row and column. 
-
-Below is the sample correlation matrix for the entire sample, without considering *death*.
-
-
->>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
 
 
 ```{r, echo=FALSE}
@@ -640,13 +446,10 @@ knitr::kable(R,
 ```
 
 
-<<<<<<< HEAD
-SPACE..
-=======
 
 Figure \ref{fig:corr}, shown here is the correlation plot for the entire sample. 
 
->>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
+
 
 
 ```{r corr, fig.cap = "Sample Correlation Crash2 Dataset\\label{fig:corr}", echo=FALSE}
@@ -654,20 +457,10 @@ corrplot(R)
 ```
 
 
-<<<<<<< HEAD
 
 Reviewing Figure \ref{fig:corr} for the general sample covariance matrix we see that most values are fairly close to zero meaning most variables do not have a linear correlation. The maximum absolute value we see is the correlation between *log_ncell* and *log_ndaysicu* at 0.3113. Other correlation coefficients that exceed the absolute value of 0.1 are *log_ndaysicu* and *log_injurytime*, *sbp* and *log_injurytime*, *log_rr* and *hr* as well as *hr* and *sbp* at -0.2225. This is expected as our scatter plots did not visually reveal any linear relationships. According to Ratner (2009), correlation coefficients with values below 0.3 are considered weak or minimal relationships. All of our correlation coefficients are within this category. *Log_ncell* and *log_ndaysicu* are the only ones to reach the threshold of a "moderate relationship". The fact that *log_ncell* and *log_ndaysicu* have a limited moderate relationship could be possibly be due to that fact those who stay in hospital for longer need more blood and those who have serious injuries need more blood and need to stay in hospital more often. We very small positive correlations between most variables but appears that *sbp* has minor negative correlations with most variables as well as *hr*, although these correlations remain minor.
-
-
-
-=======
-Reviewing Figure \ref{fig:corr} for the general sample covariance matrix we see that most values are fairly close to zero meaning most variables do not have a linear correlation. The maximum absolute value we see is the correlation between *log_ncell* and *log_ndaysicu* at 0.3113. Other correlation coefficients that exceed the absolute value of 0.1 are *log_ndaysicu* and *log_injurytime*, *sbp* and *log_injurytime*, *log_rr* and *hr* as well as *hr* and *sbp* at -0.2225. This is expected as our scatter plots did not visually reveal any linear relationships. According to Ratner (2009), correlation coefficients with values below 0.3 are considered weak or minimal relationships. All of our correlation coefficients are within this category. *Log_ncell* and *log_ndaysicu* are the only ones to reach the threshold of a "moderate relationship". The fact that *log_ncell* and *log_ndaysicu* have a limited moderate relationship could be possibly be due to that fact those who stay in hospital for longer need more blood and those who have serious injuries need more blood and need to stay in hospital more often. We very small positive correlations between most variables but appears that *sbp* has minor negative correlations with most variables as well as *hr*, although these correlations remain minor.
-
 
 Below is the sample correlation matrix for those who did not survive (*death*=1)
-
->>>>>>> a3b8fe7dfcff52e9f54f7638bd044c719c5d104b
-
 
 ```{r, echo=FALSE}
 R_death <- cor(X_death)
@@ -691,11 +484,11 @@ knitr::kable(R_life,
 
 
 
-Figure \ref{fig:corrgroup} are the correlation matrices while accounting for *death*, as well as, the Figure 22 which is a heatmap for the differences in the correlations.
+Figure \ref{fig:corrgroup} are the correlation matrices while accounting for *death*, as well as, the Figure \ref{fig:heatmap} which is a heatmap for the differences in the correlations.
 
 
 
-```{r heatmap, fig.cap = "Heatmap difference between correlation atrices\\label{fig:heatmap}", echo=FALSE}
+```{r heatmap, fig.cap = "Heatmap difference between correlation matrices\\label{fig:heatmap}", echo=FALSE}
 
 R_diff <-  R_life - R_death 
 heatmap(R_diff, Colv = NA, Rowv = NA, scale="column", main="Heatmap: Difference of Matrix correlations death and survival")
@@ -708,7 +501,7 @@ corrplot(R_death, title="Did not survive")
 corrplot(R_life, title="Survived")
 ```
 
-
+\newpage
 
 We do not see any major changes in relationships for those who do not survive and people that do. Some variances do increase for those who survive such as *log_ndaysicu* and *log_ncell*,  which almost doubles, and rises to a level of correlation at 0.3493 -  considered moderate (Ratner, 2009). This may be because, for those that do not survive, they receive a lot of blood to attempt to save their lives, but do not survive long enough to stay in the ICU due to the severity of their trauma. This therefore would limit the covariance. For those who survive, they possibly could remain in hospital longer therefore, receiving more blood over those days, increasing the covariance.
 
@@ -791,7 +584,13 @@ corrplot(R_MCD)
 
 ## Principal Component Analysis
 
-We can divide our quantitative variables in three categories:
+The aim of Principal Component Analysis is to impose an alternative cartesian structure on our dataset that is optimized for dimensionality reduction. The data is restructured through an eigenvalue decomposition of the sample correlation matrix to derive the set of principal components. These feature vectors express the data in such a way that the explained variance of the data is concentrated in the first principal components. In other words, the descriptive capacity of our architecture is relegated to the top end of our sequence of dimensions. Organizing the data in such a way allows us to reduce the dimensionality of the set by removing the lower, less descriptive principal components, while retaining a high level of variance. 
+
+In addition to providing the considerable benefits of dimensionality reduction, this approach allows us to consider underlying groups in the data. This will be our principal concern here, since the number of dimensions in our case does not pose considerable complications and our ratio of columns to rows is very good. Our challenge, as previously discussed, is to determine patterns of behavior in our data. 
+
+In the previous sections, we have followed necessary processes to prepare and normalize our data in order to optimize our PCA results. Non standardized data may compromize PCA results, since the method is very sensitive to the variances of input variables. If the distributions differ considerably in range, the behavior of variables with greater variability will dominate our results. We have applied log transformations where necessarily to account for skewed distributions. The R function prcomp() that we use to derive the principal components computes the mean centered matrix and handles issues of scaling variables when necessary. By considering our sample correlations, we confirmed that we do not have issues of collinearity, which reduces the risk of redundant information in our variables. 
+
+Before the interpretation of the Principal Component Analysis, we can divide first our quantitative variables into three semantic categories:
 
 1. Individual factors
 
@@ -810,27 +609,15 @@ We can divide our quantitative variables in three categories:
   i) ndaysicu
   ii) ncell
 
-
-Then, we will discriminate how the principal components uses this variables.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+This is a useful exercise for us to express our own understanding of the descriptive nature of each of the variables. Each variable contributes a certain type of knowledge about the phenomenon we are studying and PCA reorganizes this information into general features. One drawback of PCA is that the principal components are less interpretable than our initial variables. Since the principal components are linear combinations of the initial variables, they don't have any real meaning and may only be understood as general directions of the data. As such, our analysis involves assigning possible interpretations of these directions. 
 
 ## PCA Complete dataset
 
-In figure 25, we plot the first 2 PC. In this case, there is approximately 40% of the variance explained with these two principal components
-
-In green color, there is the survival patients and orange is the death patients. Is is difficult to see a clear sepatations between both populutions. In the same, there is no linear relationship between these two  groups.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-
 ![First two PCs based on the sample covariance all population](figure_output/pca_death.png)
 
-On the other hand, we will analize the weights of the fist two principal components. This can be seen in the figure \ref{fig:l1pc}. For the case of the first PC (Left), the largest positive value are associated with the specfic variable of *sbp*. Some studies, for example [Banegas et all](https://pubmed.ncbi.nlm.nih.gov/11896505/) and [Kurl et all](https://www.ahajournals.org/doi/full/10.1161/hs0901.095395) suggest that Systolic blood pressure is a more frequent cardiovascular risk factor than other blood related measures and can be used in order to detect future diseases. So, it appears that this principal components reflects these effect for the patients.
+In Figure 26, we plot the first two principal components considering the entire population. Immediately, we observe that there is no clear clustering of the data within the first two principal components. We have broken out the data by survival (green) and death (orange), but we see no clear linear relationship here either. Effectively, the full data set appears uniformly distributed about the origin. We remark that the density of orange points is more pronounced on the left quadrants, implying the proportion of death outcomes is somewhat greater for negative values of the first principal component, but uniformly distributed in the second. 
 
-In the case of the second Principal component (Right) the largest positive value with the medical attention and injury time. It suggets that previous you receive medical attention, it is possible that you can have more chance for survival.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+We note that the first two principal components represent approximately 40% of the total variance explained in the model. This is less than half the explained variance of the model and may seem less than ideal, but as mentioned previously, our goal is to identify prominent clusters more so than building an optimal alternate model through dimensionality reduction. In Figure \ref{fig:pcaeigv}, we see that the captured variance for the sequence of eigenvalues does not exhibit a clear drop after the first few values. Instead, we see that the marginal explained variance decreases at a near constant rate. In fact, we see the greatest decrease in marginal explained variance after the second principal component. Thus, we will focus our analysis on the first two PCs. 
 
 ```{r l1pc, fig.cap = "Loadings for the first and sencond PCs individually\\label{fig:l1pc}", echo=FALSE}
 # Categorical variables
@@ -852,15 +639,24 @@ abline(h=0)
 text(1:p,X_pcs$rotation[,2],labels=colnames(X),pos=1,col=color_4,cex=0.75)
 ```
 
-On the other hand, when we consider the loadings for the first two PCs (figure \ref{fig:l3pc}) that larges value in magnitude are associated with the sbp pressure and medical attention.
+Now, we consider the derivation of the first two principal components using loading plots, shown in Figure \ref{fig:l1pc}. These plots describe the weight of each variable on the respective principal component loadings. Weights with greater distances from zero imply a greater influence on the respective PC.
 
-It is important to notice the inverse relation between sbp and other biometric measures. For example
+First Principal Component:
 
-* [Herakova et all](https://clinicalhypertension.biomedcentral.com/articles/10.1186/s40885-017-0071-3) report that  in general deep breathing could reduce blood pressures (BP). So we 
+* We have variable sbp with a weight around +0.5 and hr, log_cc, and log_ncell with weights near -0.5, and log_rr, log_ndaysicu with smaller weights around -0.25. 
+* Variables age and log_injurytime have no weight on this PC. 
+* Our biometrics contribute the most weight to this PC, with sbp, hr, log_cc, and log_ncell with the most prominent weights. This feature may describe the effect of general patient health at the time of the accident.
+* Some studies, such as [Banegas et all](https://pubmed.ncbi.nlm.nih.gov/11896505/) and [Kurl et all](https://www.ahajournals.org/doi/full/10.1161/hs0901.095395) suggest that Systolic blood pressure is a more frequent cardiovascular risk factor than other blood-related measures and can be used to detect future diseases, which may explain its prominence.
 
-* [Harvard Heart Letter](https://www.health.harvard.edu/heart-health/does-heart-rate-affect-blood-pressure)  reports that an *isolated increase in blood pressure can drop the heart rate a little*
+Second Principal Component:
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+* We have log_ndaysicu and log_injurytime with weights near +0.5, and age, sbp, and log_ncell with weights around +0.25, and hr, log_rr with weights near -0.25.
+* Variable log_cc has a weight of zero.
+* We notice the contribution of age and log_injurytime to the second PC, while not present in the first.
+* The variables log_ndaysicu and log_injurytime contribute the most weight to the second PC, so this feature describes the the temporal context of the injury and recovery period. 
+* This may suggest that prompt medical attention increases chances for survival.
+
+We continue our analysis of the PC loadings with Figure \ref{fig:l3pc}, which provides a 2D loading plot. 
 
 ```{r l3pc, fig.cap = "Loadings for the first two PC\\label{fig:l3pc}", echo=FALSE}
 plot(X_pcs$rotation[,1:2],
@@ -878,63 +674,67 @@ draw.circle(0,0,1,border=color_4,lwd=1)
 ```
 
 
-Finally figure 28 reflects the PC scores and PC loadings. In this case, it is difficult to make conclusions due to the numbers of observed individuals, but we can make the following assevarations:
 
-* There is a strong positive relation between age and injury time.
+We immediately note the most prominent variables: sbp, log_ndaysicu, log_ncell, and hr. Moreover, we may consider the geometry between the two PC axes. For this plot, the angles between the vectors provide information on how characteristics are correlated. Small angles imply positive correlations, large angles near 180° imply negative correlation, while orthogonality implies unlikely correlation.
 
-* There is no relation between the ndaysicu with the biometrical measures as sbp and hr. It makes sense, because this is a variable more related with the medical attention, as can be appreciated with the variables *ncell* and *injurytime*
+We notice a possible negative correlation between sbp and the other biometrics log_rr, log_cc, and hr. In order to make conclusions, We consider possible explanations for this behavior based on medical studies:
+
+1. [Herakova et all](https://clinicalhypertension.biomedcentral.com/articles/10.1186/s40885-017-0071-3) report the relationship between the increase of blood pressure during exhalation and the decrease during inhalation. Moreover, the paper mentions that in general deep breathing could reduce blood pressure. 
+
+2. [Harvard Heart Letter](https://www.health.harvard.edu/heart-health/does-heart-rate-affect-blood-pressure)  reports that an *isolated increase in blood pressure can drop the heart rate a little*. As a result, after a patient's trauma, the increase in *sbp* is followed by a decrease in heart rate, providing a possible explanation for the inverse relationship.
+
+* We notice a strong positive correlation between *log_injurytime* and *age*, which we discussed in our previous sections. Greater age tends to be correlated with lower survival rates and longer treatment times. 
+
+* There is no relation between the *ndaysicu* with the biometrical measures as *sbp* and *hr*. It makes sense because this is a variable more related to medical attention. On the other hand *ndaysicu* is more related to the variables *ncell*, *injurytime*, and *age*. This implies a strong association between our individual characteristics and the medical attention prescribed. 
+
+In figure 29, we see a very similar visualization as in Figure \ref{fig:l3pc}, but with the observations included. Again, we notice a lack of clustering, but we have an understanding of the relationships of our characteristics. 
 
 ![PC Scores and PC loading all population](figure_output/pca_biplot.png)
 
-The figure \ref{fig:pcaeigv} shows the explained variance of the eigenvalue. We see that the first 4 principal components explains approximately 63% of the model.
+\newpage
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Figure \ref{fig:pcaeigv} shows the explained variance of each eigenvalue. As previously discussed, the first two PCs represent approximately 40% of the explained variance, but failed to reveal any noticeable clusters. We see that the first four principal components explain approximately 63% of the model, this may provide more promising groupings. 
+
+We must note that the shape of this plot alerts us that our data may not be optimal to a standard PCA analysis. An ideal curve should be steep, with the majority of the variance concentrated in the first few PCs, then flatten out. Our curve, as discussed previously, decreases at a steady rate with a heavy right tail. Even the first four PCs only represent 63% of the variance, which is less than optimal. The method also failed to reveal any significant clusters. As a result, PCA may not be the most appropriate dimensionality reduction technique for our data.
+
 
 ```{r pcaeigv, fig.cap = "Eigenvalues of the sample correlation matrix\\label{fig:pcaeigv}", echo=FALSE}
 fviz_eig(X_pcs,ncp=17,addlabels=T,barfill=color_1,barcolor=`color_4`)
 ```
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Figure 30 reflects the relations in the first four principal componets. We do not appreciate a clear distintion bewteen the groups, and the ausence of linear relation between them.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+The matrix scatterplot reflects the relations in the first four principal components. Here too, we do not appreciate a clear distinction between the groups (death and survival). Nor do we see linear relationships between the populations or a specific group. This provides further justification for our initial decision of considering only the first two PCs, since the subsequent two provide no further insight into possible clusters.
 
 ![PC Scores and PC loading all population](figure_output/pca_4pc2.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Finally Figure \ref{fig:corrpc} explains the correlation between the variables and the principal components. This information is very similar to what we deduced graphically from the PC loadings plots. In the case of the first principal components, in magnitude, the biometrical measures and medical attention variables are more related to this component.  In the case of the second principal component, the individual factors such as age and injury time acquire more relevance in the analysis. 
 
-Finally figure \ref{fig:corrpc} explain the correlation between the variables and the principal components. IN the case of tghe first principal components, in magnitude the biometrical measures and medical attention variables are the more related with them.  In the case of the second principal component, the individual factors such age and injury time adquire more relevance in the analisis.
+We see that for the third and fourth PC's, age and log_rr represent the most prominent weights. In the case of PC4, the positive correlation between age and death becomes clear with the right skewed distribution of the orange points in the matrix scatterplot.
 
-In case of age this i more influential in PC4, and it can explain the right orange points in figure 35.
 
 ```{r corrpc, fig.cap = "Correlation between dataset and all PC\\label{fig:corrpc}", echo=FALSE}
 corrplot(cor(X,X_pcs$x),is.corr=T)
 #corrplot(cor(X,X_pcs$x[,1:4]),is.corr=T)
 ```
 
-**IS NECESSARY TO DO THE SAME BY CLASS?**
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-
 \newpage
 
 ## PCA by Category
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+To further our analysis, we break out our data by survival outcome and develop the Principal component analysis for death (1825 individuals) and survival (7672 individuals) groups. In this case, we add the sex of the patients where females are the blue points and males are gray. 
 
-
-Important. For these plot the groups are now female (blue) and male (gray)
+Similar to Figure 26, figure 33 shows there is no linear relation between the populations and the sex subgroups. Also, both principal components explain approximately 35% of the variance for each subgroup. This is similar to the PCA for all the population.
 
 ![PC Scores and PC loading all population](figure_output/pca_groups.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+In the case of the loadings for the first principal component (figure \ref{fig:l1pcgrp}) for the death population, the largest positive values are associated with *hr* and *cc*. 
 
+For the survival population, the first PC is greatly weighted by the variables associated with medical attention such as *ndaysicu* and *ncell*. As a result, we can observe the effect of receiving medical attention as a crucial factor for survival in case of accident or trauma. The variable sbp also has a significant negative weight. 
 
-figure \ref{fig:l1pcgrp}...
+The variable *injurytime* has no significant effect on the survival of the patients, but does weigh prominently in the first PC of the death group. We also notice that sbp has considerable weight for both groups. 
 
-```{r l1pcgrp, fig.cap = "Loadings for the first two PC by death and survival patients\\label{fig:l1pcgrp}", echo=FALSE}
+When we compare this results with the result of the PCA for all the population, we appreciate that the effect of the medical attention is more relevant for the second principal component than for the first one.
+
+```{r l1pcgrp, fig.cap = "Loadings for the first PC by death and survival patients\\label{fig:l1pcgrp}", echo=FALSE}
 load('rda/clinical_trial_complete.rda')
 X <- clinical_trial_complete[,-c(1,11,13,14,15,16,18)]
 
@@ -966,17 +766,41 @@ p_surv <- ncol(X_surv)
 X_pcs_surv <- prcomp(X_surv,scale=TRUE)
 
 
-#par(mfrow=c(1,2))
-#plot(1:p_death,X_pcs_death$rotation[,1],pch=19,col=color_1,main="Weights for the first PC death patients",
-#     xlab="Variables",ylab="Score")
-#abline(h=0)
-#text(1:p_death,X_pcs_death$rotation[,1],labels=colnames(X_death),pos=1,col=color_4,cex=0.75)
+par(mfrow=c(1,2))
+plot(1:p_death,X_pcs_death$rotation[,1],pch=19,col=color_1,main="Weights for the first PC death patients",
+     xlab="Variables",ylab="Score", ylim = c(-1,0.6), xlim = c(0,9))
+abline(h=0)
+text(1:p_death,X_pcs_death$rotation[,1],labels=colnames(X_death),pos=1,col=color_4,cex=0.75)
 
-#plot(1:p_surv,X_pcs_surv$rotation[,1],pch=19,col=color_1,main="Weights for the first PC survival patients",
-#     xlab="Variables",ylab="Score")
-#abline(h=0)
-#text(1:p_surv,X_pcs_surv$rotation[,1],labels=colnames(X_surv),pos=1,col=color_4,cex=0.75)
+plot(1:p_surv,X_pcs_surv$rotation[,1],pch=19,col=color_1,main="Weights for the first PC survival patients",
+     xlab="Variables",ylab="Score", ylim = c(-0.6,0.7), xlim = c(0,9))
+abline(h=0)
+text(1:p_surv,X_pcs_surv$rotation[,1],labels=colnames(X_surv),pos=1,col=color_4,cex=0.75)
+```
 
+Then, for the loading of the second principal component (figure \ref{fig:l2pcgrp}), in the case of the death population, the effect of the medical attention is reflected with the fact that *ndaysicu* and *ncell* have the largest positive values. On the other hand, for the loadings of the second principal component for survival population, we can see how these variables are again relevant, but also are important the variables of injurytime and sbp. So, the second principal component for survival population reflects the effect of receiving faster medical help. This effect was also reflected in the second principal component for the general population.
+
+
+```{r l2pcgrp, fig.cap = "Loadings for the second PC by death and survival patients\\label{fig:l2pcgrp}", echo=FALSE}
+par(mfrow=c(1,2))
+plot(1:p_death,X_pcs_death$rotation[,2],pch=19,col=color_1,main="Weights for the second PC deaths patients",
+     xlab="Variables",ylab="Score", ylim = c(-0.3,0.7), xlim = c(0,9))
+abline(h=0)
+text(1:p_death,X_pcs_death$rotation[,2],labels=colnames(X_death),pos=1,col=color_4,cex=0.75)
+
+plot(1:p_surv,X_pcs_surv$rotation[,2],pch=19,col=color_1,main="Weights for the second PC deaths patients",
+     xlab="Variables",ylab="Score", ylim = c(-0.7,0.6), xlim = c(0,9))
+abline(h=0)
+text(1:p_surv,X_pcs_surv$rotation[,2],labels=colnames(X_surv),pos=1,col=color_4,cex=0.75)
+
+```
+
+\newpage
+
+Figure \ref{fig:l3pcgrp} shows the PCA graph for loading and scores. For the Death patients, we notice the strong weight and positive corrlation of log_ndaysicu and log_injurytime. A second prominent group of variables is log_ncell, hr, and log_cc that are strongly correlated together, but seemingly uncorrelated with the other group and negatively correlated with sbp. This aligns with our earlier observation, that elevated Systolic Blood Pressure may decrease heart rates. 
+
+
+```{r l3pcgrp, fig.cap = "Loadings for the first two PC by death and survival patients\\label{fig:l3pcgrp}", echo=FALSE}
 par(mfrow=c(1,2))
 plot(X_pcs_death$rotation[,1:2],
      pch=19,
@@ -1003,22 +827,19 @@ plot(X_pcs_surv$rotation[,1:2],
 abline(h=0,v=0)
 text(X_pcs_surv$rotation[,1:2],labels=colnames(X_surv),pos=1,col=color_4,cex=0.75)
 draw.circle(0,0,1,border=color_4,lwd=1)
-
 ```
 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+For Survival patients, right panel of figure \ref{fig:l3pcgrp} , we notice slightly different correlation patterns. For example, *log_ndaysicu* and *log_ncell* are positively correlated and significant for both PCs. For patients who survive, the duration and intensity of treatment are positively correlated. Meanwhile, for patients who do not survive, we see a correlation between the duration of treatment and the time of injury, independent of the intensity of treatment. For both groups, intensity of treatment and time of injury are not correlated. 
 
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+A variable that we would benefit from here is a measure of the severity of the trauma, which would provide a more nuanced understanding of these relationships. It is likely that a majority of those who survive suffered less intense wounds than those who died. This would explain why duration and intensity of treatment are correlated for survival patients, since this would most likely be indicative of progressively severe wounds. Meanwhile, for patients who do not survive, duration and intensity of treatment are not correlated, which may be because these patients generally suffered the most severe wounds and had low chances of survival. Thus, the speed at which they were able to begin treatment only bought them time, regardless of the treatment. If we had more information on the type and severity of the wounds, we would be able test this hypothesis.
 
 
 ![PC Scores and PC loading all population for death and survival patiens](figure_output/pca_group_biplot)
 
+We have our PC Score plots with the observations mapped in figure 37. This is somewhat redundant and confirms our observations that there are no clear clusters and reiterates the correlations we discussed previously.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Figures \ref{fig:pcaeigvgr1} and  \ref{fig:pcaeigvgr2} ... 
+Finally, Figures \ref{fig:pcaeigvgr1} and  \ref{fig:pcaeigvgr2} provide us with the variance plots for the eigenvalues of the two groups. Similarly to the full population, we see that we have less than ideal reorganizations of the data using PCA on these two groups. The shape of the curves are almost linear, decreasing at a near constant rate. This is not an ideal distribution of variance across principal components, where we would like a greater concentration at the top of the tail. We may want to consider alternative approaches to dimensionality reduction for this data. 
 
 ```{r pcaeigvgr1, fig.cap = "Eigenvalues of the sample correlation matrix for death patients\\label{fig:pcaeigvgr1}", echo=FALSE}
 fviz_eig(X_pcs_death,ncp=8,addlabels=T,barfill=color_1,barcolor=`color_4`)
@@ -1029,20 +850,26 @@ fviz_eig(X_pcs_death,ncp=8,addlabels=T,barfill=color_1,barcolor=`color_4`)
 fviz_eig(X_pcs_surv,ncp=8,addlabels=T,barfill=color_1,barcolor=`color_4`)
 ```
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 
 \newpage
 
 ## Conclusions
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+The purpose of this study was to extract insights from our data using Principal Component Analysis. We selected a large data set and selected a subset of categorical and continuous variables for our analysis. Since we manually removed a number of variables, eliminating any pressing need for dimensionality reduction, our primary use for PCA was to identify any groups in the data and understand patterns regarding survival outcomes and treatment. 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Our preliminary treatment of the data involved standardizing variables with significant skew using log transformations. We assessed the behavior of our continuous variables across different categories, finding strong patterns in age, injury time, and central capillary refill time in terms of survival outcomes. Using sample correlation matrices, we noticed recorded our strongest positive correlation between log_ncell and log_ndaysicu, relating the duration and intensity of treatments. We also noted negative correlations between Systolic Blood Pressure and other bio metrics like Heart Rate and Respiratory Rate, which may be explained by the physiological effects of blood pressure on respiration. 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Our application of Principal Component Analysis revealed no clusters in our data, even with breakdowns by sex and survival. However, we were able to more precisely assess the relationship between our variables and gain valuable insight into possible indicators of survival as well as multivariate patterns. We notice that for the general population, the first principal component is constructed mainly with the bio metrics, while the second PC is weighted more by treatment times. This provides evidence for the importance of general bio metric indicators, like blood pressure and respiratory rates, to understand the status of a patient. 
+
+We must note the sub optimal distribution of variance across the principal components in the eigenvalue plots, which indicates that this method may not be appropriate for our data as is. Effectively, the behavior of our observations cannot be fully explained by a minimal number of feature vectors.
+
+Through a categorical breakdown of PCA, we were able to assess differences in correlations between injury time, duration of hospitalization, and the intensity of treatment between patients who survive and those who do not. For survival patients, the duration and intensity of treatment are positively correlated, while patients who died show a positive correlation between duration of treatment and the time of injury. In both groups, time of injury and intensity of treatment are not correlated. 
+
+This small divergence across groups may have alerted us to a broader and critical issue: existing patterns in our data are not adequately expressed by the variables we chose in our initial selection. It is our suspicion that below our indicators for survival, there runs a current of behavior related to the *intensity of injury* that wields considerable influence on survival outcomes, the efficacy of treatment, and the bio metrics. Unexpressed and dictatorial in its causality, this subliminal information may be the primary agent of sabotage in the restructuring of variance under the principal components, since the most profound agent of behavior remains hidden from us. This is easily grasped: the type and severity of treatment is fundamental in determining treatment options and is strongly correlated with the likelihood of survival.
+
+Unfortunately, none of our selected variables provide even the most tangential information regarding the type and severity of injury. Thus, this crucial information cannot even be inferred. However, the original data set did include such information. As such, we recommend that any further work on this analysis include a reconsideration of the selection of variables, where more information regarding the type and severity of injury be included in the data set. 
 
 
 ## References
